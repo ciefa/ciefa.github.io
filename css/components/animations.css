@@ -1,0 +1,74 @@
+/* css/components/animations.css */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes geometricPattern {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.section.visible {
+    animation: fadeIn var(--transition-speed) forwards;
+}
+
+.geometric-pattern {
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--color-accent), 
+        var(--color-primary), 
+        var(--color-accent));
+    background-size: 200% 200%;
+    animation: geometricPattern 15s ease infinite;
+}
+
+.card {
+    transition: transform var(--transition-speed),
+                box-shadow var(--transition-speed);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform var(--transition-speed);
+}
+
+.btn-primary:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}

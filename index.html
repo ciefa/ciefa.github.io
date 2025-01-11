@@ -1,136 +1,154 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <title>ciefa.eth</title>
+
+    <!-- Typography -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/components/typography.css">
+    <link rel="stylesheet" href="css/components/layout.css">
+    <link rel="stylesheet" href="css/components/animations.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <style type="text/css">
-        body {
-            background: rgb(29, 28, 28) !important;
-        }
-        #work {
-            list-style-type: none;
-            color: white;
-        }
-        #test {
-            background-color: rgb(29, 28, 28);
-        }
-        .offcanvas-header {
-            background-color: rgb(29, 28, 28);
-            color: white;
-        }
-    </style>
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="nav-brand">ciefa.eth</a>
+                <div class="nav-links">
+                    <!-- Add this inside .nav-content, after .nav-links -->
+                    <!-- Replace the existing theme-toggle button with this -->
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
 
-    <h1 align="center" class="fw-bold display-1 text-white">ciefa.eth</h1>
 
-    <div class="container">
-        <div class="text-left rounded-pill border border-2">
-            <h2 class="display-1 text-white text-center">About me</h2>
-            <p class="text-white text-center">I'm Ciefa, deeply involved in the blockchain and digital asset sectors
-                with a background in customer service and compliance within the crypto and gaming industries. <br> My work
-                spans several projects inside Web3/Crypto highlighting my interest in web3,
-                governance, and economic innovation. <br> Passionate about post-capitalist solutions and digital nomadism, I explore
-                the intersection of technology, economics, and society.</p>
-        </div>
-    </div>
-  <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-lg-5 p-5 text-white border"><b>Work Experience</b>
-                <p class="text-white">Current:</p>
-                
-                <ul>
-                    <li>Co-founder, Chaineducation Labs GmbH<br>
-                    Current Project:
-                    Lead, Bussiness Development<br>(2077 Collective)</li>
-                    <li>Council, Nova DAO</li>
-                    <li>Advisor, DeFi Girls NFT</li>
-                </ul>
-
-                <p class="text-white">Previous:</p>
-                <ul>
-                    <li>CS/CS Compliance, Two European CEXs</li>
-                    <li>2nd-Level Tech & CS Compliance, Video Gaming Industry</li>
-                </ul>
-                
-            </div>
-            <div class="col-sm-4 col-lg-4 p-5 text-white border-top border-bottom"><b>My Interests</b>
-                <p class="text-white">Blockchain & Web3 are my passion; I have deep knowledge of both and I am always
-                    happy to discuss use-cases and potential projects.</p>
-                    <ul>
-                        <li>Web3</li>
-                        <li>Blockchain & Digital Assets</li>
-                        <li>Governments & Communities</li>
-                        <li>Video Games</li>
-                        <li>Politics, Economics & Trading</li>
-                    </ul>
-            </div>
-            <div class="col-sm-4 col-lg-3 p-5 text-white border"><b>Recent Blog Articles</b>
-                <p class="text-white">Recent blog articles that I either wrote or read and liked!
-                    Topics include Blockchain & Digital Assets, Trading and Economics.
-                </p>
-                <ul>
-                    <li><a href="https://www.ciefa161.eu/blog/article1.html">Ethical Capitlism: From Punk Roots to Progressive Pragmatism</a></li>
-                    <li><a href="https://disruptive-horizons.com/p/digital-nomadism-disrupting-nation-states">How Digital Nomadism is Disrupting Nation-States</a></li>
-                </ul>
+                    <a href="#about">About</a>
+                    <a href="#work">Work</a>
+                    <a href="#hire">Hire</a>
+                </div>
             </div>
         </div>
-    </div>
-    <br>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="border-top border-bottom">
-                <h2 class="display-1 text-white text-center">Hire Me</h2>
-                <p class="text-white text-center">I do consultancy work and I am now available for hire.</p>
-                <div class="text-center"><a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample"
-                        role="button" aria-controls="offcanvasExample">
-                        Learn More
-                    </a>
+    </nav>
 
-                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                        aria-labelledby="offcanvasExampleLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Hire Me</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div id="test" class="offcanvas-body">
-                            <div>
-                                <img src="/ciefa.png" width="250">
-                                <br>
-                                <p class="text-center text-white">Hire me for:</p>
-                                <ul id="work">
-                                    <li>Customer Success</li>
-                                    <li>Business Development</li>
-                                    <li>DAO Advisory</li>
-                                </ul>
-                            </div>
-                            <div class="dropdown mt-3">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-bs-toggle="dropdown">
-                                    Contact Me
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="https://www.farcaster.id/ciefa.eth">Farcaster</a></li>
-                                    <li><a class="dropdown-item" href="https://x.com/ciefa_eth">Twitter/X</a></li>
-                                </ul>
-                            </div>
-                        </div>
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-title">ciefa.eth</h1>
+            <div class="geometric-pattern"></div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="card glass">
+                <h2>About me</h2>
+                <p>I'm Ciefa, deeply involved in the blockchain and digital asset sectors with a background in customer
+                    service and compliance within the crypto and gaming industries. My work spans several projects
+                    inside Web3/Crypto highlighting my interest in web3, governance, and economic innovation. Passionate
+                    about post-capitalist solutions and digital nomadism, I explore the intersection of technology,
+                    economics, and society.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="section grid-layout">
+        <div class="container">
+            <div class="grid-3">
+                <div class="card glass">
+                    <h3>Work Experience</h3>
+                    <div class="content">
+                        <h4>Current:</h4>
+                        <ul>
+                            <li>Co-founder, Chaineducation Labs GmbH</li>
+                            <li>Lead, Business Development (2077 Collective)</li>
+                            <li>Council, Nova DAO</li>
+                            <li>Advisor, DeFi Girls NFT</li>
+                        </ul>
+                        <h4>Previous:</h4>
+                        <ul>
+                            <li>CS/CS Compliance, Two European CEXs</li>
+                            <li>2nd-Level Tech & CS Compliance, Video Gaming Industry</li>
+                        </ul>
                     </div>
-                </div><br>
+                </div>
+
+                <div class="card glass">
+                    <h3>My Interests</h3>
+                    <div class="content">
+                        <p>Blockchain & Web3 are my passion; I have deep knowledge of both and I am always happy to
+                            discuss use-cases and potential projects.</p>
+                        <ul>
+                            <li>Web3</li>
+                            <li>Blockchain & Digital Assets</li>
+                            <li>Governments & Communities</li>
+                            <li>Video Games</li>
+                            <li>Politics, Economics & Trading</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card glass">
+                    <h3>Recent Blog Articles</h3>
+                    <div class="content">
+                        <p>Recent blog articles that I either wrote or read and liked! Topics include Blockchain &
+                            Digital Assets, Trading and Economics.</p>
+                        <ul class="article-list">
+                            <li><a href="https://www.ciefa161.eu/blog/article1.html">Ethical Capitalism: From Punk Roots
+                                    to Progressive Pragmatism</a></li>
+                            <li><a href="https://disruptive-horizons.com/p/digital-nomadism-disrupting-nation-states">How
+                                    Digital Nomadism is Disrupting Nation-States</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <section id="hire" class="section">
+        <div class="container">
+            <div class="card glass">
+                <h2>Hire Me</h2>
+                <p>I do consultancy work and I am now available for hire.</p>
+                <div class="hire-content">
+                    <img src="assets/images/ciefa.png" alt="Ciefa" class="profile-image">
+                    <div class="services">
+                        <h4>Services:</h4>
+                        <ul>
+                            <li>Customer Success</li>
+                            <li>Business Development</li>
+                            <li>DAO Advisory</li>
+                        </ul>
+                    </div>
+                    <div class="contact-links">
+                        <a href="https://www.farcaster.id/ciefa.eth" class="btn-primary">Farcaster</a>
+                        <a href="https://x.com/ciefa_eth" class="btn-primary">Twitter/X</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
 </body>
+
 </html>
