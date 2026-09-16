@@ -8,19 +8,22 @@
 <style>
 :root{color-scheme:light;--ink:#18243a;--muted:#58677b;--line:#d8dfe9;--blue:#254c91;--blue-soft:#eef3ff;--amber:#fff0a8;--surface:#f2f5f9;--green:#206943;--red:#a52a3a;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;color:var(--ink);background:var(--surface)}
 *{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button,select{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:.6rem .85rem;font-size:.875rem;font-weight:600}button:hover:not(:disabled){background:#edf2fa;border-color:#b3c0d5}button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7ca4ea;outline-offset:3px}.primary{background:var(--blue);border-color:var(--blue);color:white}.primary:hover:not(:disabled){background:#1b3c79;color:white}.quiet{border-color:transparent;background:transparent}.small{padding:.35rem .6rem;font-size:.8125rem}.danger{color:var(--red)}.accept{color:var(--green);background:#eff9f2;border-color:#bbd9c6}.reject{color:var(--red)}[hidden]{display:none!important}
-.app{height:100dvh;min-height:440px;display:grid;grid-template-rows:auto minmax(0,1fr) auto}.topbar{min-height:76px;background:white;border-bottom:1px solid var(--line);padding:13px 24px;display:flex;align-items:center;gap:22px}.brand{display:flex;align-items:center;gap:11px;white-space:nowrap}.brand-icon{position:relative;display:block;width:29px;height:34px;border:2px solid var(--blue);border-radius:4px;background:linear-gradient(var(--amber),var(--amber)) 5px 8px/16px 7px no-repeat}.brand-icon:after{content:"";position:absolute;left:5px;top:21px;width:13px;height:2px;background:var(--blue)}.brand strong{font-size:1.05rem;letter-spacing:-.02em}.file-info{border-left:1px solid var(--line);padding-left:22px;min-width:0;flex:1}.filename{font-size:.875rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.save-state{color:var(--muted);font-size:.8125rem;margin-top:3px}.save-state.unsaved{color:#8b5400}.top-actions{display:flex;gap:8px;align-items:center}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:0}.reading-area{min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);position:relative}.reading-bar{min-height:48px;padding:9px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);font-size:.8125rem;color:var(--muted)}.reading-bar strong{color:var(--ink);font-size:.875rem}.document-stage{position:relative;min-height:0;overflow:hidden;background:#fff}.document-stage iframe{width:100%;height:100%;display:block;border:0;background:white}.empty-document{height:100%;display:flex;align-items:center;justify-content:center;padding:36px;overflow:auto}.empty-inner{max-width:480px;width:100%;border-top:4px solid var(--blue);padding-top:28px}.eyebrow{font-size:.75rem;font-weight:750;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}.empty-inner h1{font-size:2rem;font-weight:650;line-height:1.18;letter-spacing:-.04em;margin:14px 0}.empty-inner p{color:var(--muted);line-height:1.65;font-size:1rem;margin:0 0 24px}.empty-actions{display:flex;gap:10px;flex-wrap:wrap}.empty-inner .local-note{margin-top:24px;margin-bottom:0;font-size:.8125rem}.sidebar{border-left:1px solid var(--line);background:#f8fafd;display:flex;flex-direction:column;min-height:0}.sidebar-top{padding:16px 18px 13px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:white;border-bottom:1px solid var(--line)}.sidebar-top h2{margin:0;font-size:1rem}.count{font-size:.8125rem;font-weight:500;color:var(--muted);margin-left:7px}.sidebar-top select{padding:5px 7px;font-size:.8125rem;font-weight:400;max-width:120px}.notes-scroll{padding:16px;overflow-y:auto;flex:1;min-height:0;scroll-behavior:smooth}.sidebar-empty{border:1px dashed #bbc8db;border-radius:8px;padding:22px 19px;color:var(--muted);font-size:.875rem;line-height:1.65}.sidebar-empty strong{color:var(--ink);display:block;margin-bottom:7px}.sidebar-empty kbd{font-size:.75rem;border:1px solid var(--line);background:white;padding:2px 4px;border-radius:4px}.card{background:white;border:1px solid var(--line);border-radius:9px;padding:15px;margin-bottom:13px;box-shadow:0 2px 3px #14223804;scroll-margin:15px}.card.active{border-color:#6e93cc;box-shadow:0 0 0 2px #dce8ff}.card-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px}.card-number{font-size:.75rem;color:var(--muted);font-weight:650}.badge{font-size:.75rem;font-weight:650;padding:3px 7px;border-radius:4px;background:#eff2f6;color:#56657b}.badge.open{background:#fff4c9;color:#795600}.badge.accepted,.badge.resolved{background:#e5f4e9;color:#23603b}.badge.rejected{background:#f9e9ec;color:#913947}.quote{display:block;text-align:left;width:100%;border:0;border-left:3px solid #e9bd31;border-radius:0;padding:7px 9px;background:#fffbee;font-size:.8125rem;line-height:1.55;font-weight:400;white-space:pre-wrap;overflow-wrap:anywhere;max-height:145px;overflow:auto}.quote:hover:not(:disabled){border-color:#bd9105;background:#fff4c9}.note-text{font-size:.875rem;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}.replacement-label{font-size:.75rem;color:var(--green);font-weight:650;margin-top:14px}.replacement{font-size:.875rem;line-height:1.6;background:#f0f8f2;border-left:3px solid #91bf9b;padding:8px 10px;margin-top:6px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:190px;overflow:auto}.replacement.deletion{font-style:italic;color:var(--muted)}.card-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.card-tools{margin-left:auto;display:flex;gap:1px}.card-tools button{font-weight:450;padding:.35rem .4rem;font-size:.75rem}.composer{background:white;border:1px solid #8eacd9;border-radius:9px;padding:16px;margin-bottom:16px;box-shadow:0 0 0 3px #e6edfa}.composer h3{font-size:.9375rem;margin:0 0 13px}.composer label.field-label{display:block;font-size:.8125rem;font-weight:650;margin:16px 0 7px}.composer textarea{width:100%;resize:vertical;min-height:95px;border:1px solid #bfcbdc;border-radius:6px;padding:9px 10px;font-size:.875rem;line-height:1.5;color:var(--ink);background:white}.checkbox-label{display:flex;align-items:center;gap:8px;margin:13px 0 0;font-size:.875rem;font-weight:600}.checkbox-label input{width:16px;height:16px;accent-color:var(--blue)}.hint{font-size:.75rem;line-height:1.5;color:var(--muted);margin:7px 0}.composer-actions{display:flex;gap:8px;margin-top:14px}.composer-error{color:var(--red);font-size:.8125rem;line-height:1.5;margin:10px 0 0}.selection-action{position:fixed;z-index:10;background:var(--ink);border-color:var(--ink);color:white;box-shadow:0 3px 15px #152b4c30;padding:.55rem .8rem;font-size:.8125rem}.selection-action:hover:not(:disabled){color:white;background:var(--blue);border-color:var(--blue)}.footer{min-height:35px;display:flex;align-items:center;justify-content:space-between;padding:8px 24px;font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);background:white;gap:12px}.footer button{font-size:.75rem;padding:0;border:0;color:var(--blue);font-weight:500;background:none}.toast{position:fixed;left:50%;bottom:50px;transform:translateX(-50%);max-width:min(620px,90vw);padding:12px 18px;background:#1e2d47;color:white;border-radius:8px;font-size:.875rem;line-height:1.45;box-shadow:0 4px 20px #18243a30;z-index:30}.toast.error{background:#8e2637}.modal{border:1px solid var(--line);border-radius:12px;padding:26px;max-width:540px;width:calc(100vw - 36px);color:var(--ink);max-height:85dvh;overflow:auto}.modal::backdrop{background:#11203b66}.modal h2{margin:0 0 16px;font-size:1.25rem}.modal p,.modal li{font-size:.875rem;line-height:1.65}.modal ol{padding-left:22px}.modal .modal-end{display:flex;justify-content:flex-end;margin-top:20px}.modal code{background:var(--surface);padding:2px 4px;border-radius:4px;font-size:.8125rem}.drop-overlay{position:fixed;inset:8px;z-index:50;background:#eef3fff2;border:3px dashed var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.4rem;font-weight:650;pointer-events:none}
+.app{height:100dvh;min-height:440px;display:grid;grid-template-rows:auto minmax(0,1fr) auto}.topbar{min-height:76px;background:white;border-bottom:1px solid var(--line);padding:13px 24px;display:flex;align-items:center;gap:22px}.brand{display:flex;align-items:center;gap:11px;white-space:nowrap}.brand-icon{position:relative;display:block;width:29px;height:34px;border:2px solid var(--blue);border-radius:4px;background:linear-gradient(var(--amber),var(--amber)) 5px 8px/16px 7px no-repeat}.brand-icon:after{content:"";position:absolute;left:5px;top:21px;width:13px;height:2px;background:var(--blue)}.brand strong{font-size:1.05rem;letter-spacing:-.02em}.file-info{border-left:1px solid var(--line);padding-left:22px;min-width:0;flex:1}.filename{font-size:.875rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.save-state{color:var(--muted);font-size:.8125rem;margin-top:3px}.save-state.unsaved{color:#8b5400}.top-actions{display:flex;gap:8px;align-items:center}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:0}.reading-area{min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);position:relative}.reading-bar{min-height:48px;padding:9px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);font-size:.8125rem;color:var(--muted)}.reading-bar strong{color:var(--ink);font-size:.875rem}.document-stage{position:relative;min-height:0;overflow:hidden;background:#fff}.document-stage iframe{width:100%;height:100%;display:block;border:0;background:white}.empty-document{height:100%;display:flex;align-items:center;justify-content:center;padding:36px;overflow:auto}.empty-inner{max-width:480px;width:100%;border-top:4px solid var(--blue);padding-top:28px}.eyebrow{font-size:.75rem;font-weight:750;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}.empty-inner h1{font-size:2rem;font-weight:650;line-height:1.18;letter-spacing:-.04em;margin:14px 0}.empty-inner p{color:var(--muted);line-height:1.65;font-size:1rem;margin:0 0 24px}.empty-actions{display:flex;gap:10px;flex-wrap:wrap}.empty-inner .local-note{margin-top:24px;margin-bottom:0;font-size:.8125rem}.sidebar{border-left:1px solid var(--line);background:#f8fafd;display:flex;flex-direction:column;min-height:0}.sidebar-top{padding:16px 18px 13px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:white;border-bottom:1px solid var(--line)}.sidebar-top h2{margin:0;font-size:1rem}.count{font-size:.8125rem;font-weight:500;color:var(--muted);margin-left:7px}.sidebar-top select{padding:5px 7px;font-size:.8125rem;font-weight:400;max-width:120px}.notes-scroll{padding:16px;overflow-y:auto;flex:1;min-height:0;scroll-behavior:smooth}.sidebar-empty{border:1px dashed #bbc8db;border-radius:8px;padding:22px 19px;color:var(--muted);font-size:.875rem;line-height:1.65}.sidebar-empty strong{color:var(--ink);display:block;margin-bottom:7px}.sidebar-empty kbd{font-size:.75rem;border:1px solid var(--line);background:white;padding:2px 4px;border-radius:4px}.card{background:white;border:1px solid var(--line);border-radius:9px;padding:15px;margin-bottom:13px;box-shadow:0 2px 3px #14223804;scroll-margin:15px}.card.active{border-color:#6e93cc;box-shadow:0 0 0 2px #dce8ff}.card-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px}.card-number{font-size:.75rem;color:var(--muted);font-weight:650}.badge{font-size:.75rem;font-weight:650;padding:3px 7px;border-radius:4px;background:#eff2f6;color:#56657b}.badge.open{background:#fff4c9;color:#795600}.badge.accepted,.badge.resolved{background:#e5f4e9;color:#23603b}.badge.rejected{background:#f9e9ec;color:#913947}.quote{display:block;text-align:left;width:100%;border:0;border-left:3px solid #e9bd31;border-radius:0;padding:7px 9px;background:#fffbee;font-size:.8125rem;line-height:1.55;font-weight:400;white-space:pre-wrap;overflow-wrap:anywhere;max-height:145px;overflow:auto}.quote:hover:not(:disabled){border-color:#bd9105;background:#fff4c9}.note-text{font-size:.875rem;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}.replacement-label{font-size:.75rem;color:var(--green);font-weight:650;margin-top:14px}.replacement{font-size:.875rem;line-height:1.6;background:#f0f8f2;border-left:3px solid #91bf9b;padding:8px 10px;margin-top:6px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:190px;overflow:auto}.replacement.deletion{font-style:italic;color:var(--muted)}.card-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.card-tools{margin-left:auto;display:flex;gap:1px}.card-tools button{font-weight:450;padding:.35rem .4rem;font-size:.75rem}.composer{background:white;border:1px solid #8eacd9;border-radius:9px;padding:16px;margin-bottom:16px;box-shadow:0 0 0 3px #e6edfa}.composer h3{font-size:.9375rem;margin:0 0 13px}.composer label.field-label{display:block;font-size:.8125rem;font-weight:650;margin:16px 0 7px}.composer textarea{width:100%;resize:vertical;min-height:95px;border:1px solid #bfcbdc;border-radius:6px;padding:9px 10px;font-size:.875rem;line-height:1.5;color:var(--ink);background:white}.checkbox-label{display:flex;align-items:center;gap:8px;margin:13px 0 0;font-size:.875rem;font-weight:600}.checkbox-label input{width:16px;height:16px;accent-color:var(--blue)}.hint{font-size:.75rem;line-height:1.5;color:var(--muted);margin:7px 0}.composer-actions{display:flex;gap:8px;margin-top:14px}.composer-error{color:var(--red);font-size:.8125rem;line-height:1.5;margin:10px 0 0}.selection-action{position:fixed;z-index:10;background:var(--ink);border-color:var(--ink);color:white;box-shadow:0 3px 15px #152b4c30;padding:.55rem .8rem;font-size:.8125rem}.selection-action:hover:not(:disabled){color:white;background:var(--blue);border-color:var(--blue)}.footer{min-height:35px;display:flex;align-items:center;justify-content:space-between;padding:8px 24px;font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);background:white;gap:12px}.footer button{font-size:.75rem;padding:0;border:0;color:var(--blue);font-weight:500;background:none}.toast{pointer-events:none;position:fixed;left:50%;bottom:50px;transform:translateX(-50%);max-width:min(620px,90vw);padding:12px 18px;background:#1e2d47;color:white;border-radius:8px;font-size:.875rem;line-height:1.45;box-shadow:0 4px 20px #18243a30;z-index:30}.toast.error{background:#8e2637}.modal{border:1px solid var(--line);border-radius:12px;padding:26px;max-width:540px;width:calc(100vw - 36px);color:var(--ink);max-height:85dvh;overflow:auto}.modal::backdrop{background:#11203b66}.modal h2{margin:0 0 16px;font-size:1.25rem}.modal p,.modal li{font-size:.875rem;line-height:1.65}.modal ol{padding-left:22px}.modal .modal-end{display:flex;justify-content:flex-end;margin-top:20px}.modal code{background:var(--surface);padding:2px 4px;border-radius:4px;font-size:.8125rem}.drop-overlay{position:fixed;inset:8px;z-index:50;background:#eef3fff2;border:3px dashed var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.4rem;font-weight:650;pointer-events:none}
 @media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr) 320px}.topbar{padding:12px 16px;gap:15px}.file-info{padding-left:15px}.brand strong{font-size:.9375rem}.top-actions{gap:5px}.top-actions button{padding:.6rem .65rem}.reading-bar{padding:9px 16px}.selection-hint{display:none}}
 @media(max-width:720px){.topbar{flex-wrap:wrap;gap:10px}.brand{flex:1}.file-info{order:3;flex-basis:100%;padding:0;border:0;display:flex;align-items:center;justify-content:space-between;gap:12px}.save-state{margin:0;white-space:nowrap}.filename{max-width:55%}.top-actions button{font-size:.75rem;padding:.55rem}.top-actions #help-button{display:none}.workspace{grid-template-columns:1fr;grid-template-rows:minmax(220px,1fr) minmax(170px,.7fr)}.sidebar{border-left:0;border-top:1px solid var(--line)}.sidebar-top{padding:9px 16px}.notes-scroll{padding:12px}.empty-document{padding:20px}.empty-inner{padding-top:16px;max-width:440px}.empty-inner h1{font-size:1.5rem;margin:10px 0}.empty-inner p{font-size:.875rem;margin-bottom:14px}.empty-inner .local-note{margin-top:12px}.footer{padding:8px 14px}.footer .footer-hint{display:none}.card{margin-bottom:10px}.reading-bar{min-height:40px;padding:6px 14px}}
 .document-panes{display:grid;grid-template-columns:minmax(0,1fr);min-width:0;min-height:0}.document-panes.comparing{grid-template-columns:repeat(2,minmax(0,1fr))}.preview-area{border-left:1px solid var(--line)}.preview-area .reading-bar{background:#eff7f2}.pane-title{display:flex;flex-direction:column;gap:4px;min-width:0}.pane-description{font-size:.75rem;line-height:1.3;color:var(--muted)}.comparing .reading-bar{min-height:70px;padding:10px 16px;gap:8px}.comparing .selection-hint{display:none}.sync-control{display:flex;align-items:center;gap:6px;font-size:.75rem;line-height:1.25;cursor:pointer;max-width:110px;flex-shrink:0}.sync-control input{accent-color:var(--blue);margin:0;width:15px;height:15px}.preview-status{font-size:.75rem;color:var(--green)}#preview-button[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue);border-color:#94afd9}.preview-loading{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;background:white;color:var(--muted);font-size:.875rem;z-index:1}.workspace.comparing{grid-template-columns:minmax(0,1fr) 310px}
 @media(max-width:1180px){.workspace.comparing{grid-template-columns:1fr;grid-template-rows:minmax(220px,1fr) minmax(170px,.42fr)}.workspace.comparing .sidebar{border-left:0;border-top:1px solid var(--line)}.workspace.comparing .sidebar-top{padding:9px 16px}.workspace.comparing .notes-scroll{display:flex;gap:12px;align-items:flex-start;overflow:auto;scroll-behavior:auto}.workspace.comparing #comment-list{display:flex;gap:12px;align-items:flex-start}.workspace.comparing .card,.workspace.comparing .composer,.workspace.comparing .sidebar-empty{flex:0 0 320px;width:320px;margin-bottom:0}.workspace.comparing .sidebar-empty{max-width:90vw}.topbar{gap:12px}.top-actions{gap:5px}}
 @media(max-width:720px){.brand strong{font-size:.875rem}.brand-icon{width:24px;height:29px}.brand-icon:after{top:20px;width:11px}.topbar{padding:10px 12px;gap:8px}.top-actions{flex-wrap:wrap;justify-content:flex-end;max-width:100%}.top-actions #preview-button{font-size:.75rem}.comparing .reading-bar{padding:8px;min-height:90px;align-items:flex-start;flex-direction:column;justify-content:center}.comparing .reading-bar strong{font-size:.8125rem}.comparing .pane-description,.sync-control{font-size:.75rem}.comparing .reading-bar #add-selection{padding:.3rem .5rem;font-size:.75rem}.workspace.comparing .card,.workspace.comparing .composer{flex-basis:290px;width:290px}.comparing .sync-control{max-width:none}.filename{max-width:45%}.save-state{font-size:.75rem;white-space:normal;text-align:right}}
+
+#import-status{font-size:.8125rem;color:var(--muted);margin-top:6px}#import-status button{margin-left:6px}
+#browser-notice{font-size:.8125rem;color:var(--red);margin-top:6px}
 </style>
 </head>
 <body>
 <div class="app">
   <header class="topbar">
     <div class="brand"><span class="brand-icon" aria-hidden="true"></span><strong>HTML reviewer</strong></div>
-    <div class="file-info"><div class="filename" id="filename">No document open</div><div class="save-state" id="save-state">Your original stays untouched</div></div>
+    <div class="file-info"><div class="filename" id="filename">No document open</div><div class="save-state" id="save-state">Your original stays untouched</div><div id="import-status" hidden><span id="import-message" role="status" aria-live="polite"></span> <button id="cancel-import" class="small" type="button">Cancel</button></div><div id="browser-notice" role="status" hidden>Review controls are not supported in this browser. Open this file in current Chrome or Firefox.</div></div>
     <div class="top-actions"><button id="open-button">Open HTML</button><button id="preview-button" aria-pressed="false" aria-controls="preview-area" disabled>Preview suggestions</button><button id="save-button" class="primary" disabled>Save annotated copy</button><button id="help-button" class="quiet" aria-label="Help">Help</button></div>
   </header>
   <main class="workspace" id="workspace">
@@ -61,14 +64,647 @@
 <button id="selection-action" class="selection-action" hidden>＋ Comment / suggest</button>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <div id="drop-overlay" class="drop-overlay" hidden>Drop your HTML file here</div>
-<dialog id="help-dialog" class="modal"><h2>A quick guide</h2><ol><li><b>Open HTML</b> to choose your handbook. The original file is read only.</li><li><b>Select text</b>, then add a comment. Tick <b>Suggest replacement text</b> to propose an edit.</li><li><b>Preview suggestions</b> opens a second view on the right. It shows accepted changes plus all pending replacement suggestions, without accepting them. The left pane shows the current document with accepted changes only. Rejected suggestions and plain comments do not change the preview’s wording.</li><li><b>Accept</b> replaces that passage in the current document too. <b>Reject</b> removes it from the preview. You can undo either decision.</li><li><b>Save annotated copy</b> downloads <code>annotated-your-filename.html</code>. Open that copy directly to continue reviewing or send it to your manager.</li></ol><p>Add new comments in the left pane. Click a highlighted change in the preview to find its comment. <b>Scroll together</b> links the two views; turn it off to read them independently.</p><p><b>Save again after making changes.</b> Closing or refreshing the page discards anything you have not downloaded. This tool does not overwrite files or save automatically.</p><p><b>Export revised HTML</b> creates a separate document with accepted edits applied, without the comments or review controls. Previewing never adds pending suggestions to this export.</p><p><b>For static HTML documents.</b> Embedded styles and images are supported. Scripts, external resources, and external links are disabled in the review. Linked files are not bundled. Replacement suggestions work within one paragraph or table cell and inherit the formatting at the start of the selection; comments can span multiple paragraphs.</p><div class="modal-end"><button id="close-help" class="primary">Got it</button></div></dialog>
+<dialog id="help-dialog" class="modal"><h2>A quick guide</h2><ol><li><b>Open HTML</b> to choose your handbook. The original file is read only.</li><li><b>Select text</b>, then add a comment. Tick <b>Suggest replacement text</b> to propose an edit.</li><li><b>Preview suggestions</b> opens a second view on the right. It shows accepted changes plus all pending replacement suggestions, without accepting them. The left pane shows the current document with accepted changes only. Rejected suggestions and plain comments do not change the preview’s wording.</li><li><b>Accept</b> replaces that passage in the current document too. <b>Reject</b> removes it from the preview. You can undo either decision.</li><li><b>Save annotated copy</b> downloads <code>annotated-your-filename.html</code>. Open that copy directly to continue reviewing or send it to your manager.</li></ol><p>Add new comments in the left pane. Click a highlighted change in the preview to find its comment. <b>Scroll together</b> links the two views; turn it off to read them independently.</p><p><b>Save again after making changes.</b> Closing or refreshing the page discards anything you have not downloaded. This tool does not overwrite files or save automatically.</p><p><b>Export revised HTML</b> creates a separate document with accepted edits applied, without the comments or review controls. Previewing never adds pending suggestions to this export.</p><p>Supported bundled documents are unpacked locally into static HTML. Their text, embedded images, and fonts remain reviewable. Interactive components and exact original print pagination are not preserved.</p><p><b>For static HTML and supported bundled documents.</b> Embedded styles and images are supported. Scripts, external resources, and external links are disabled in the review. Linked files are not bundled. Replacement suggestions work within one paragraph or table cell and inherit the formatting at the start of the selection; comments can span multiple paragraphs.</p><div class="modal-end"><button id="close-help" class="primary">Got it</button></div></dialog>
 <script id="review-data" type="application/json">null</script>
+<script id="bundle-importer">
+const bundleImporter = (() => {
+  'use strict';
+  const MAX_TEMPLATE_BYTES = 2 * 1024 * 1024;
+  const MAX_ASSETS = 1024;
+  const MAX_ASSET_BYTES = 8 * 1024 * 1024;
+  const MAX_TOTAL_ASSET_BYTES = 32 * 1024 * 1024;
+  const MAX_NORMALIZED_BYTES = 48 * 1024 * 1024;
+  const UUID = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/;
+  const MIME = new Set([
+    'image/png',
+    'image/jpeg',
+    'image/gif',
+    'image/webp',
+    'image/avif',
+    'image/svg+xml',
+    'font/woff',
+    'font/woff2',
+  ]);
+  const JS_MIME = new Set(['text/javascript', 'application/javascript']);
+  const types = ['manifest', 'template', 'ext_resources', 'page_order'];
+  const bytes = (text) => new Blob([text]).size;
+  const fail = (code) => {
+    const error = new Error(code);
+    error.name = 'ImportError';
+    error.code = code;
+    throw error;
+  };
+  const object = (value) => !!value && typeof value === 'object' && !Array.isArray(value);
+  const parse = (text) => {
+    try {
+      return JSON.parse(text);
+    } catch {
+      fail('INVALID_BUNDLE');
+    }
+  };
+  function detect(doc) {
+    const nodes = [...doc.querySelectorAll('script[type]')].filter((n) =>
+      n.getAttribute('type').startsWith('__bundler/'),
+    );
+    if (!nodes.length) return null;
+    const found = new Map();
+    for (const n of nodes) {
+      const key = n.getAttribute('type').slice(10);
+      if (!types.includes(key)) fail('UNSUPPORTED_BUNDLE');
+      if (found.has(key)) fail('INVALID_BUNDLE');
+      found.set(key, n.textContent);
+    }
+    if (!found.has('manifest') || !found.has('template')) fail('INVALID_BUNDLE');
+    return Object.fromEntries(found);
+  }
+  // CSS escapes are interpreted only in identifiers/URLs, never in document prose.
+  function unescapeCss(value) {
+    return value.replace(
+      /\\(?:([0-9a-f]{1,6})[\t\n\f\r ]?|\r\n|[\n\r\f]|(.))/gi,
+      (_, hex, char) => {
+        if (!hex) return char || '';
+        const n = parseInt(hex, 16);
+        return String.fromCodePoint(
+          !n || n > 0x10ffff || (n >= 0xd800 && n <= 0xdfff) ? 0xfffd : n,
+        );
+      },
+    );
+  }
+  function escapeEnd(text, i) {
+    const match = /^\\(?:[0-9a-f]{1,6}[\t\n\f\r ]?|\r\n|[^\r])/i.exec(text.slice(i));
+    return i + (match ? match[0].length : 1);
+  }
+  function quotedEnd(text, i) {
+    const quote = text[i++];
+    while (i < text.length) {
+      if (text[i] === '\\') i = escapeEnd(text, i);
+      else if (text[i++] === quote) return i;
+    }
+    fail('UNSUPPORTED_BUNDLE');
+  }
+  function commentEnd(text, i) {
+    const end = text.indexOf('*/', i + 2);
+    return end < 0 ? text.length : end + 2;
+  }
+  function identifierEnd(text, i) {
+    while (i < text.length) {
+      if (text[i] === '\\') i = escapeEnd(text, i);
+      else if (/[\w\-\u0080-\uffff]/.test(text[i])) i++;
+      else break;
+    }
+    return i;
+  }
+  function staticSelectors(css) {
+    let out = '',
+      copied = 0,
+      start = 0;
+    for (let i = 0; i < css.length; ) {
+      if (css.startsWith('/*', i)) {
+        i = commentEnd(css, i);
+        continue;
+      }
+      if (css[i] === '"' || css[i] === "'") {
+        i = quotedEnd(css, i);
+        continue;
+      }
+      if (css[i] === '\\') {
+        i = escapeEnd(css, i);
+        continue;
+      }
+      if (css[i] === '{') {
+        const header = css.slice(start, i);
+        const clean = unescapeCss(header.replace(/\/\*[\s\S]*?\*\//g, ''));
+        if (/:defined\b/i.test(clean)) {
+          const selectors = clean.split(',');
+          const keep = selectors.filter(
+            (s) => !/^doc-page:not\(:defined\)$/.test(s.replace(/\s+/g, '')),
+          );
+          if (keep.some((s) => /:defined\b/i.test(s))) fail('UNSUPPORTED_BUNDLE');
+          let j = i + 1,
+            depth = 1;
+          while (j < css.length && depth) {
+            if (css.startsWith('/*', j)) j = commentEnd(css, j);
+            else if (css[j] === '"' || css[j] === "'") j = quotedEnd(css, j);
+            else if (css[j] === '\\') j = escapeEnd(css, j);
+            else {
+              if (css[j] === '{') depth++;
+              if (css[j] === '}') depth--;
+              j++;
+            }
+          }
+          if (depth) fail('UNSUPPORTED_BUNDLE');
+          out += css.slice(copied, start) + (keep.length ? keep.join(',') + css.slice(i, j) : '');
+          copied = j;
+          start = j;
+          i = j;
+          continue;
+        }
+        start = i + 1;
+      } else if (css[i] === '}' || css[i] === ';') start = i + 1;
+      i++;
+    }
+    return out + css.slice(copied);
+  }
+  async function rewriteCss(css, resolve, signal) {
+    let out = '',
+      copied = 0,
+      start = 0,
+      atRule = '',
+      stack = [];
+    for (let i = 0; i < css.length; ) {
+      signal.throwIfAborted();
+      if (css.startsWith('/*', i)) {
+        i = commentEnd(css, i);
+        continue;
+      }
+      if (css[i] === '"' || css[i] === "'") {
+        i = quotedEnd(css, i);
+        continue;
+      }
+      if (css[i] === '@') {
+        const end = identifierEnd(css, i + 1);
+        atRule = unescapeCss(css.slice(i + 1, end)).toLowerCase();
+        if (atRule === 'import') fail('UNSUPPORTED_BUNDLE');
+        i = end;
+        continue;
+      }
+      if (css[i] === '{') {
+        stack.push(atRule || 'rule');
+        atRule = '';
+        start = ++i;
+        continue;
+      }
+      if (css[i] === '}') {
+        stack.pop();
+        start = ++i;
+        continue;
+      }
+      if (css[i] === ';') {
+        start = ++i;
+        atRule = '';
+        continue;
+      }
+      if (/[a-z_\-\\]/i.test(css[i])) {
+        const end = identifierEnd(css, i);
+        const name = unescapeCss(css.slice(i, end)).toLowerCase();
+        let open = end;
+        while (/\s/.test(css[open] || '') && open < css.length) open++;
+        if (css[open] === '(' && ['image-set', '-webkit-image-set', 'src'].includes(name))
+          fail('UNSUPPORTED_BUNDLE');
+        if (name === 'url' && css[open] === '(') {
+          let p = open + 1;
+          while (/\s/.test(css[p] || '') && p < css.length) p++;
+          let raw;
+          if (css[p] === '"' || css[p] === "'") {
+            const q = quotedEnd(css, p);
+            raw = css.slice(p + 1, q - 1);
+            p = q;
+            while (/\s/.test(css[p] || '') && p < css.length) p++;
+          } else {
+            const begin = p;
+            while (p < css.length && css[p] !== ')') {
+              if (css[p] === '\\') p = escapeEnd(css, p);
+              else if (/[\s"'(]/.test(css[p])) {
+                if (css[p].trim()) fail('UNSUPPORTED_BUNDLE');
+                p++;
+              } else p++;
+            }
+            raw = css.slice(begin, p).trim();
+          }
+          if (css[p] !== ')') fail('UNSUPPORTED_BUNDLE');
+          const kind =
+            stack.includes('font-face') &&
+            /^\s*src\s*:/i.test(unescapeCss(css.slice(start, i).replace(/\/\*[\s\S]*?\*\//g, '')))
+              ? 'font'
+              : 'image';
+          const url = await resolve(unescapeCss(raw), kind);
+          out +=
+            css.slice(copied, i) + 'url("' + url.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '")';
+          copied = p + 1;
+          i = p + 1;
+          continue;
+        }
+        i = Math.max(end, i + 1);
+        continue;
+      }
+      i++;
+    }
+    return out + css.slice(copied);
+  }
+  async function validateSvg(text, signal) {
+    const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+    if (
+      doc.querySelector('parsererror') ||
+      doc.documentElement.localName !== 'svg' ||
+      doc.documentElement.namespaceURI !== 'http://www.w3.org/2000/svg'
+    )
+      fail('INVALID_ASSET');
+    const ref = async (value) => {
+      if (!/^#[^\s]*$/.test(value)) fail('INVALID_ASSET');
+      return value;
+    };
+    try {
+      for (const el of doc.querySelectorAll('*')) {
+        if (
+          [
+            'script',
+            'foreignobject',
+            'iframe',
+            'object',
+            'embed',
+            'animate',
+            'set',
+            'animatetransform',
+            'animatemotion',
+          ].includes(el.localName.toLowerCase())
+        )
+          fail('INVALID_ASSET');
+        for (const a of el.attributes) {
+          if (
+            /^on/i.test(a.localName) ||
+            (a.localName === 'base' && a.namespaceURI === 'http://www.w3.org/XML/1998/namespace')
+          )
+            fail('INVALID_ASSET');
+          if (['href', 'src'].includes(a.localName)) await ref(a.value);
+          if (
+            a.localName === 'style' ||
+            [
+              'fill',
+              'stroke',
+              'filter',
+              'clip-path',
+              'mask',
+              'marker',
+              'marker-start',
+              'marker-mid',
+              'marker-end',
+              'cursor',
+            ].includes(a.localName)
+          )
+            await rewriteCss(a.value, ref, signal);
+        }
+        if (el.localName === 'style') await rewriteCss(el.textContent, ref, signal);
+      }
+    } catch (error) {
+      if (error.name === 'AbortError') throw error;
+      fail('INVALID_ASSET');
+    }
+    return new XMLSerializer().serializeToString(doc);
+  }
+  async function convert(descriptor, { signal, onProgress = () => {} }) {
+    let manifest = parse(descriptor.manifest),
+      html = parse(descriptor.template);
+    if (!object(manifest) || typeof html !== 'string') fail('INVALID_BUNDLE');
+    if (bytes(html) > MAX_TEMPLATE_BYTES) fail('LIMIT_EXCEEDED');
+    const entries = Object.entries(manifest);
+    if (entries.length > MAX_ASSETS) fail('LIMIT_EXCEEDED');
+    const assets = new Map(),
+      resources = new Map(),
+      direct = new Map();
+    const progress = { phase: 'assets', completed: 0, total: 0 };
+    let decodedBytes = 0,
+      lastYield = performance.now(),
+      growth = bytes(html);
+    async function tick() {
+      signal.throwIfAborted();
+      if (performance.now() - lastYield >= 8) {
+        await new Promise((r) => setTimeout(r, 0));
+        signal.throwIfAborted();
+        lastYield = performance.now();
+      }
+    }
+    for (const [id, entry] of entries) {
+      if (
+        !UUID.test(id) ||
+        !object(entry) ||
+        typeof entry.mime !== 'string' ||
+        typeof entry.data !== 'string' ||
+        (entry.compressed !== undefined && typeof entry.compressed !== 'boolean')
+      )
+        fail('INVALID_BUNDLE');
+      entry.mime = entry.mime.trim().toLowerCase();
+      if (!MIME.has(entry.mime) && !JS_MIME.has(entry.mime)) fail('UNSUPPORTED_BUNDLE');
+      if (!JS_MIME.has(entry.mime)) progress.total++;
+    }
+    if (descriptor.page_order !== undefined) {
+      const order = parse(descriptor.page_order);
+      if (!Array.isArray(order)) fail('INVALID_BUNDLE');
+      if (order.length) fail('UNSUPPORTED_BUNDLE');
+    }
+    if (descriptor.ext_resources !== undefined) {
+      const mappings = parse(descriptor.ext_resources),
+        ids = new Set();
+      if (!Array.isArray(mappings)) fail('INVALID_BUNDLE');
+      for (const item of mappings) {
+        if (
+          !object(item) ||
+          typeof item.id !== 'string' ||
+          typeof item.uuid !== 'string' ||
+          !UUID.test(item.uuid) ||
+          ids.has(item.id) ||
+          !Object.hasOwn(manifest, item.uuid)
+        )
+          fail('INVALID_BUNDLE');
+        ids.add(item.id);
+        if (!JS_MIME.has(manifest[item.uuid].mime)) fail('UNSUPPORTED_BUNDLE');
+      }
+    }
+    if (
+      entries.some(([, e]) => e.compressed && !JS_MIME.has(e.mime)) &&
+      typeof DecompressionStream !== 'function'
+    )
+      fail('DECOMPRESSION_UNAVAILABLE');
+    async function decode(data, compressed, mime) {
+      const encoded = data.replace(/[\t\n\f\r ]/g, '');
+      if (
+        encoded.length % 4 ||
+        /[^A-Za-z0-9+/=]/.test(encoded) ||
+        (encoded.includes('=') && !/^[^=]*={1,2}$/.test(encoded))
+      )
+        fail('INVALID_ASSET');
+      const packed = [];
+      let packedSize = 0;
+      for (let i = 0; i < encoded.length; i += 65536) {
+        await tick();
+        const part = encoded.slice(i, i + 65536);
+        let raw;
+        try {
+          raw = atob(part);
+        } catch {
+          fail('INVALID_ASSET');
+        }
+        if (btoa(raw) !== part) fail('INVALID_ASSET');
+        packedSize += raw.length;
+        if (
+          !compressed &&
+          (packedSize > MAX_ASSET_BYTES || decodedBytes + packedSize > MAX_TOTAL_ASSET_BYTES)
+        )
+          fail('LIMIT_EXCEEDED');
+        packed.push(Uint8Array.from(raw, (c) => c.charCodeAt(0)));
+      }
+      let chunks = packed,
+        size = packedSize;
+      if (compressed) {
+        chunks = [];
+        size = 0;
+        const reader = new Blob(packed)
+          .stream()
+          .pipeThrough(new DecompressionStream('gzip'))
+          .getReader();
+        const cancel = () => {
+          reader.cancel().catch(() => {});
+        };
+        signal.addEventListener('abort', cancel, { once: true });
+        try {
+          while (true) {
+            await tick();
+            const next = await reader.read();
+            signal.throwIfAborted();
+            if (next.done) break;
+            size += next.value.byteLength;
+            if (size > MAX_ASSET_BYTES || decodedBytes + size > MAX_TOTAL_ASSET_BYTES)
+              fail('LIMIT_EXCEEDED');
+            chunks.push(next.value);
+          }
+        } catch (error) {
+          if (signal.aborted) signal.throwIfAborted();
+          if (error.code) throw error;
+          fail('INVALID_ASSET');
+        } finally {
+          signal.removeEventListener('abort', cancel);
+          await reader.cancel().catch(() => {});
+          reader.releaseLock();
+        }
+      }
+      decodedBytes += size;
+      if (size > MAX_ASSET_BYTES || decodedBytes > MAX_TOTAL_ASSET_BYTES) fail('LIMIT_EXCEEDED');
+      let blob = new Blob(chunks, { type: mime });
+      const header = new Uint8Array(await blob.slice(0, 256).arrayBuffer());
+      const ascii = new TextDecoder('latin1').decode(header);
+      const signatures = {
+        'image/png': () => [137, 80, 78, 71, 13, 10, 26, 10].every((v, i) => header[i] === v),
+        'image/jpeg': () => header[0] === 255 && header[1] === 216 && header[2] === 255,
+        'image/gif': () => /^GIF8[79]a/.test(ascii),
+        'image/webp': () => ascii.startsWith('RIFF') && ascii.slice(8, 12) === 'WEBP',
+        'image/avif': () => ascii.slice(4, 8) === 'ftyp' && /avif|avis/.test(ascii.slice(8)),
+        'font/woff': () => ascii.startsWith('wOFF'),
+        'font/woff2': () => ascii.startsWith('wOF2'),
+        'image/svg+xml': () => true,
+      };
+      if (!signatures[mime]?.()) fail('INVALID_ASSET');
+      if (mime === 'image/svg+xml')
+        blob = new Blob([await validateSvg(await blob.text(), signal)], { type: mime });
+      await tick();
+      const url = await new Promise((resolve, reject) => {
+        const r = new FileReader();
+        const abort = () => r.abort();
+        signal.addEventListener('abort', abort, { once: true });
+        r.onload = () => resolve(r.result);
+        r.onerror = () => reject(new Error('INVALID_ASSET'));
+        r.onabort = () => reject(new DOMException('Canceled', 'AbortError'));
+        r.onloadend = () => signal.removeEventListener('abort', abort);
+        r.readAsDataURL(blob);
+      });
+      signal.throwIfAborted();
+      return { mime, url };
+    }
+    onProgress({ ...progress });
+    for (const [id, entry] of entries) {
+      await tick();
+      if (JS_MIME.has(entry.mime)) continue;
+      assets.set(id, await decode(entry.data, entry.compressed, entry.mime));
+      entry.data = '';
+      progress.completed++;
+      onProgress({ ...progress });
+    }
+    manifest = null;
+    onProgress({ phase: 'normalize', completed: 0, total: 0 });
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    html = '';
+    if (detect(doc)) fail('UNSUPPORTED_BUNDLE');
+    const aliases = new Set(['table', 'thead', 'tbody', 'tfoot', 'tr', 'td', 'th', 'caption']);
+    const allowed = new Set([
+      'x-dc',
+      'doc-page',
+      'sc-helmet',
+      ...[...aliases].map((n) => 'sc-raw-' + n),
+    ]);
+    if (doc.querySelectorAll('x-dc').length > 1 || doc.querySelectorAll('doc-page').length > 1)
+      fail('UNSUPPORTED_BUNDLE');
+    for (const el of doc.querySelectorAll('*')) {
+      await tick();
+      if (el.localName.includes('-') && !allowed.has(el.localName)) fail('UNSUPPORTED_BUNDLE');
+      if (el.matches('script[data-dc-script]') && el.textContent.trim()) fail('UNSUPPORTED_BUNDLE');
+      if (el.matches('audio,video,track,link[rel~="stylesheet"]')) fail('UNSUPPORTED_BUNDLE');
+      if (['srcset', 'imagesrcset'].some((n) => el.getAttribute(n)?.trim()))
+        fail('UNSUPPORTED_BUNDLE');
+      for (const a of el.attributes)
+        if (
+          /^[:@]/.test(a.name) ||
+          (!el.closest('script,style,pre,code') && /\{\{[\s\S]*?\}\}/.test(a.value))
+        )
+          fail('UNSUPPORTED_BUNDLE');
+    }
+    const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      if (
+        !walker.currentNode.parentElement.closest('script,style,pre,code') &&
+        /\{\{[\s\S]*?\}\}/.test(walker.currentNode.data)
+      )
+        fail('UNSUPPORTED_BUNDLE');
+    }
+    for (const helmet of doc.querySelectorAll('helmet,sc-helmet')) {
+      for (const child of [...helmet.children]) {
+        if (child.localName === 'script') continue;
+        if (!['style', 'title', 'meta'].includes(child.localName)) fail('UNSUPPORTED_BUNDLE');
+        doc.head.append(child);
+      }
+      helmet.remove();
+    }
+    doc.querySelectorAll('script,iframe,frame,object,embed,base,link').forEach((n) => n.remove());
+    doc.querySelectorAll('form').forEach((n) => {
+      n.removeAttribute('action');
+      n.removeAttribute('target');
+    });
+    for (const el of [...doc.querySelectorAll('*')])
+      if (el.localName.startsWith('sc-raw-')) {
+        const node = doc.createElement(el.localName.slice(7));
+        for (const a of el.attributes) node.setAttribute(a.name, a.value);
+        node.append(...el.childNodes);
+        el.replaceWith(node);
+      }
+    const ancestry = {
+      thead: ['table'],
+      tbody: ['table'],
+      tfoot: ['table'],
+      caption: ['table'],
+      tr: ['table', 'thead', 'tbody', 'tfoot'],
+      td: ['tr'],
+      th: ['tr'],
+    };
+    for (const el of doc.querySelectorAll('thead,tbody,tfoot,caption,tr,td,th'))
+      if (!ancestry[el.localName].includes(el.parentElement?.localName)) fail('UNSUPPORTED_BUNDLE');
+    async function resolveUrl(value, kind) {
+      value = value.trim();
+      if (value.startsWith('#')) return value;
+      let resource,
+        fragment = '';
+      const hash = value.indexOf('#');
+      const base = hash < 0 ? value : value.slice(0, hash);
+      if (hash >= 0) fragment = value.slice(hash);
+      if (UUID.test(base.toLowerCase())) {
+        resource = assets.get(base.toLowerCase());
+        if (!resource) {
+          if (entries.some(([id, e]) => id === base.toLowerCase() && JS_MIME.has(e.mime)))
+            fail('INVALID_ASSET');
+          fail('MISSING_ASSET');
+        }
+      } else if (/^data:/i.test(base)) {
+        if (!direct.has(base)) {
+          const m = /^data:([^;,]+);base64,([\s\S]*)$/i.exec(base);
+          if (!m || !MIME.has(m[1].toLowerCase())) fail('UNSUPPORTED_BUNDLE');
+          direct.set(base, await decode(m[2], false, m[1].toLowerCase()));
+        }
+        resource = direct.get(base);
+      } else if (/^[a-f0-9-]{36}\?/i.test(base)) fail('UNSUPPORTED_BUNDLE');
+      else fail('EXTERNAL_RESOURCE');
+      if (!resource.mime.startsWith(kind + '/')) fail('INVALID_ASSET');
+      resources.set(resource.url, resource);
+      const result = resource.url + fragment;
+      growth += bytes(result) - bytes(value);
+      if (growth > MAX_NORMALIZED_BYTES) fail('LIMIT_EXCEEDED');
+      await tick();
+      return result;
+    }
+    for (const img of doc.querySelectorAll('img[src]'))
+      img.setAttribute('src', await resolveUrl(img.getAttribute('src'), 'image'));
+    for (const style of doc.querySelectorAll('style'))
+      style.textContent = await rewriteCss(staticSelectors(style.textContent), resolveUrl, signal);
+    for (const el of doc.querySelectorAll('[style]'))
+      el.setAttribute('style', await rewriteCss(el.getAttribute('style'), resolveUrl, signal));
+    for (const svg of doc.querySelectorAll('svg'))
+      await validateSvg(new XMLSerializer().serializeToString(svg), signal);
+    const host = doc.querySelector('doc-page');
+    const root = doc.querySelector('x-dc');
+    root?.classList.add('hri-static-root');
+    if (host) {
+      const sizes = {
+        a4: [(210 * 96) / 25.4, (297 * 96) / 25.4],
+        letter: [816, 1056],
+        legal: [816, 1344],
+      };
+      const size = (host.getAttribute('size') || 'letter').trim().toLowerCase(),
+        orientation = (host.getAttribute('orientation') || 'portrait').trim().toLowerCase();
+      if (
+        !Object.hasOwn(sizes, size) ||
+        !['portrait', 'landscape'].includes(orientation) ||
+        ['width', 'height', 'content-width', 'content-height'].some((a) => host.hasAttribute(a)) ||
+        host.querySelector(':scope > .page')
+      )
+        fail('UNSUPPORTED_BUNDLE');
+      const margin = (host.getAttribute('margin') || '0.75in').trim();
+      const m = /^(?:(\d+(?:\.\d+)?)(px|in|mm|cm|pt|pc)|(0))$/.exec(margin);
+      if (!m) fail('UNSUPPORTED_BUNDLE');
+      const units = { px: 1, in: 96, mm: 96 / 25.4, cm: 96 / 2.54, pt: 96 / 72, pc: 16 };
+      const padding = m[3] ? 0 : Number(m[1]) * units[m[2]];
+      if (!Number.isFinite(padding) || padding > Math.min(...sizes[size]) / 4)
+        fail('UNSUPPORTED_BUNDLE');
+      const slots = new Map();
+      for (const node of doc.querySelectorAll('[slot]')) {
+        const slot = node.getAttribute('slot');
+        if (!slot) continue;
+        if (node.parentElement !== host || !['header', 'footer'].includes(slot) || slots.has(slot))
+          fail('UNSUPPORTED_BUNDLE');
+        slots.set(slot, node);
+        node.removeAttribute('slot');
+      }
+      if (slots.has('header')) host.prepend(slots.get('header'));
+      if (slots.has('footer')) host.append(slots.get('footer'));
+      host.classList.add('hri-static-document');
+      host.style.setProperty(
+        '--hri-page-width',
+        sizes[size][orientation === 'landscape' ? 1 : 0] + 'px',
+      );
+      host.style.setProperty('--hri-page-margin', padding + 'px');
+      const style = doc.createElement('style');
+      style.dataset.hriLayout = '1';
+      style.textContent = `html,body{margin:0;min-height:100%}body{background:#f0eee6}x-dc.hri-static-root{display:block!important;min-height:100vh}doc-page.hri-static-document{display:block!important;visibility:visible!important;box-sizing:border-box;width:var(--hri-page-width);max-width:calc(100% - 32px);margin:16px auto;padding:min(var(--hri-page-margin),8vw);background:white;box-shadow:0 2px 10px #0002}doc-page.hri-static-document img{max-width:100%;height:auto}@media(max-width:720px){doc-page.hri-static-document{width:100%;max-width:100%;margin:0;padding:24px;box-shadow:none}}@media print{html,body{background:white}x-dc.hri-static-root{min-height:0}doc-page.hri-static-document{width:auto;max-width:none;margin:0;padding:0;box-shadow:none}}@page{size:${size === 'a4' ? 'A4' : size} ${orientation};margin:${padding}px}`;
+      doc.head.append(style);
+    } else if ([...doc.querySelectorAll('[slot]')].some((n) => n.getAttribute('slot')))
+      fail('UNSUPPORTED_BUNDLE');
+    if (root && !host) {
+      const style = doc.createElement('style');
+      style.dataset.hriLayout = '1';
+      style.textContent = 'x-dc.hri-static-root{display:block!important;min-height:100vh}@media print{x-dc.hri-static-root{min-height:0}}';
+      doc.head.append(style);
+    }
+    const cells = [...doc.querySelectorAll('td,th')].map((n) => [n.id, n.textContent]);
+    const output = '<!doctype html>\n' + doc.documentElement.outerHTML;
+    if (bytes(output) > MAX_NORMALIZED_BYTES) fail('LIMIT_EXCEEDED');
+    const roundtrip = new DOMParser().parseFromString(output, 'text/html');
+    if (
+      JSON.stringify([...roundtrip.querySelectorAll('td,th')].map((n) => [n.id, n.textContent])) !==
+      JSON.stringify(cells)
+    )
+      fail('UNSUPPORTED_BUNDLE');
+    signal.throwIfAborted();
+    return {
+      html: output,
+      assetCount: resources.size,
+      decodedBytes,
+      resources: [...resources.values()],
+      warnings: ['STATIC_LAYOUT'],
+    };
+  }
+  return Object.freeze({ detect, convert });
+})();
+</script>
 <script>
 (() => {
   'use strict';
   const FORMAT = 'local-html-reviewer-v1';
   const $ = id => document.getElementById(id);
-  const frame = $('document-frame');
+  let frame = $('document-frame');
   const previewFrame = $('preview-frame');
   const template = document.documentElement.cloneNode(true);
   template.querySelector('#review-data').textContent = 'null';
@@ -147,6 +783,7 @@
       ids.add(c.id);
     }
     const doc = parseHtml(value.documentHtml);
+    if ([...doc.querySelectorAll('script[type]')].some(n => n.getAttribute('type').startsWith('__bundler/'))) throw importError('INVALID_REVIEW');
     for (const c of value.comments) {
       const marks = marksFor(c.id, doc);
       if (marks.length !== c.originalParts.length || marks.some((m,i) => Number(m.dataset.hrPart) !== i || m.children.length || m.textContent !== (c.status === 'accepted' ? (i === 0 ? c.replacement : '') : c.originalParts[i]))) throw new Error('Some comment anchors in this file are missing or damaged. The file was not opened.');
@@ -154,51 +791,356 @@
     if (Array.from(doc.querySelectorAll('[data-hr-id]')).some(m => !ids.has(m.dataset.hrId))) throw new Error('This review contains unrecognized comment anchors.');
     return { format:FORMAT, originalName:value.originalName, documentHtml:value.documentHtml, comments:value.comments, view:value.view ? {previewOpen:value.view.previewOpen === true, scrollTogether:value.view.scrollTogether !== false} : undefined };
   }
-  async function readFile(file) {
-    if (!file) return;
-    if (!/\.html?$/i.test(file.name) && file.type !== 'text/html') { toast('Choose an .html or .htm document.', true); return; }
-    if (!canDiscard()) return;
-    try {
-      const bytes = new Uint8Array(await file.arrayBuffer());
-      const head = new TextDecoder().decode(bytes.slice(0,4096));
-      const declared = head.match(/<meta[^>]*charset\s*=\s*["']?\s*([\w-]+)/i);
-      const encoding = bytes[0] === 255 && bytes[1] === 254 ? 'utf-16le' : bytes[0] === 254 && bytes[1] === 255 ? 'utf-16be' : bytes[0] === 239 && bytes[1] === 187 && bytes[2] === 191 ? 'utf-8' : declared ? declared[1] : 'utf-8';
-      let text;
-      try { text = new TextDecoder(encoding).decode(bytes); } catch { text = new TextDecoder().decode(bytes); }
-      const embedded = parseHtml(text).querySelector('script#review-data[type="application/json"]');
-      let review = null;
-      if (embedded) {
-        try { const payload = JSON.parse(embedded.textContent); if (payload && payload.format === FORMAT) review = validatePayload(payload); } catch (err) { throw new Error('Could not read this annotated copy: ' + err.message); }
-      }
-      if (review) await loadReview(review, true);
-      else await loadReview({format:FORMAT, originalName:file.name, documentHtml:text, comments:[]}, false);
-    } catch (err) { toast('Could not open the file. ' + err.message, true); }
+  const MAX_INPUT_BYTES = 64 * 1024 * 1024;
+  const MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024;
+  const IMPORT_TIMEOUT_MS = 30000;
+  const STAGING_TIMEOUT_MS = 10000;
+  const MAX_IMAGE_PIXELS = 40000000;
+  const MAX_TOTAL_IMAGE_PIXELS = 160000000;
+  let importJob = null,
+    importGeneration = 0;
+  const importMessages = {
+    INVALID_REVIEW: 'This annotated copy is invalid or its comment anchors are damaged.',
+    INVALID_BUNDLE: 'This bundled document contains invalid or incomplete data.',
+    UNSUPPORTED_BUNDLE: 'This bundle uses document features that this reviewer cannot convert.',
+    MISSING_ASSET: 'An embedded image or font is missing from this bundle.',
+    INVALID_ASSET: 'An embedded image or font could not be decoded.',
+    EXTERNAL_RESOURCE: 'This bundle depends on files that are not embedded in it.',
+    LIMIT_EXCEEDED: "This document exceeds the reviewer's import limits.",
+    DECOMPRESSION_UNAVAILABLE:
+      'This browser cannot unpack compressed bundles. Use a current Chrome or Firefox.',
+    IMPORT_TIMEOUT: 'Opening this document took too long. Your current review has been kept.',
+    IMPORT_FAILED: 'This document could not be opened. Your current review has been kept.',
+  };
+  function importError(code) {
+    const error = new Error(importMessages[code]);
+    error.code = code;
+    return error;
   }
-  async function loadReview(value, keepAnnotations) {
+  function abortable(promise, signal) {
+    return new Promise((resolve, reject) => {
+      const abort = () => reject(signal.reason || new DOMException('Canceled', 'AbortError'));
+      if (signal.aborted) {
+        abort();
+        return;
+      }
+      signal.addEventListener('abort', abort, { once: true });
+      Promise.resolve(promise)
+        .then(resolve, reject)
+        .finally(() => signal.removeEventListener('abort', abort));
+    });
+  }
+  function cancelImport() {
+    importJob?.controller.abort();
+  }
+  function importBusy(job) {
+    if (!job.ui)
+      job.ui = {
+        focus: document.activeElement,
+        disabled: new Map(
+          [
+            'save-button',
+            'clean-button',
+            'preview-button',
+            'add-selection',
+            'comment-filter',
+            'demo-button',
+          ].map((id) => [id, $(id).disabled]),
+        ),
+      };
+    // The example remains an available replacement import.
+    for (const id of job.ui.disabled.keys()) if (id !== 'demo-button') $(id).disabled = true;
+    document.querySelector('.document-panes').inert = true;
+    document.querySelector('.sidebar').inert = true;
+    $('workspace').setAttribute('aria-busy', 'true');
+    $('import-status').hidden = false;
+    hideSelection();
+  }
+  function importProgress(job, message) {
+    if (importJob !== job) return;
+    $('import-message').textContent = message;
+  }
+  function finishImport(job, success) {
+    if (importJob !== job) return;
+    clearTimeout(job.timeout);
+    clearTimeout(job.stageTimeout);
+    importJob = null;
+    document.querySelector('.document-panes').inert = false;
+    document.querySelector('.sidebar').inert = false;
+    $('workspace').setAttribute('aria-busy', 'false');
+    $('import-status').hidden = true;
+    for (const [id, disabled] of job.ui.disabled) $(id).disabled = disabled;
+    if (success) {
+      $('save-button').disabled = false;
+      $('clean-button').disabled = false;
+      $('preview-button').disabled = false;
+      $('add-selection').disabled = true;
+    }
+    if (!$('help-dialog').open) {
+      const focus = success
+        ? $('preview-button')
+        : job.ui.focus?.isConnected && !job.ui.focus.disabled
+          ? job.ui.focus
+          : $('open-button');
+      focus.focus();
+    }
+  }
+  async function checkResources(candidate, resources, signal) {
+    const doc = candidate.contentDocument;
+    let totalPixels = 0;
+    const images = resources.filter((r) => r.mime.startsWith('image/'));
+    for (let i = 0; i < images.length; i += 4) {
+      const dimensions = await abortable(
+        Promise.all(
+          images.slice(i, i + 4).map(async (resource) => {
+            const img = doc.createElement('img');
+            img.src = resource.url;
+            try {
+              await abortable(img.decode(), signal);
+            } catch (error) {
+              if (signal.aborted) throw error;
+              throw importError('INVALID_ASSET');
+            }
+            const pixels = img.naturalWidth * img.naturalHeight;
+            if (!pixels) throw importError('INVALID_ASSET');
+            if (pixels > MAX_IMAGE_PIXELS) throw importError('LIMIT_EXCEEDED');
+            return pixels;
+          }),
+        ),
+        signal,
+      );
+      totalPixels += dimensions.reduce((a, b) => a + b, 0);
+      if (totalPixels > MAX_TOTAL_IMAGE_PIXELS) throw importError('LIMIT_EXCEEDED');
+    }
+    // A hidden staging frame can have an empty FontFaceSet until layout runs.
+    // Validate each referenced font directly, without relying on style discovery.
+    try {
+      const fonts = resources.filter((r) => r.mime.startsWith('font/'));
+      await abortable(
+        Promise.all(
+          fonts.map((resource, i) =>
+            new doc.defaultView.FontFace(
+              'hri-import-check-' + i,
+              'url("' + resource.url + '")',
+            ).load(),
+          ),
+        ),
+        signal,
+      );
+    } catch (error) {
+      if (signal.aborted) throw error;
+      throw importError('INVALID_ASSET');
+    }
+  }
+  async function stageReview(job, prepared) {
+    const { value, keepAnnotations, resources = [] } = prepared;
     const html = sanitizeDocument(value.documentHtml, keepAnnotations);
+    const candidate = document.createElement('iframe');
+    job.candidate = candidate;
+    candidate.id = 'import-candidate-frame';
+    candidate.title = 'Document being opened';
+    candidate.hidden = true;
+    candidate.setAttribute('sandbox', 'allow-same-origin');
+    candidate.referrerPolicy = 'no-referrer';
+    job.stageTimeout = setTimeout(() => {
+      job.timedOut = true;
+      job.controller.abort();
+    }, STAGING_TIMEOUT_MS);
+    const loaded = new Promise((resolve) => {
+      candidate.onload = () => {
+        if (candidate.contentDocument?.querySelector('meta[charset]')) resolve();
+      };
+    });
+    candidate.srcdoc = html;
+    frame.parentElement.append(candidate);
+    await abortable(loaded, job.controller.signal);
+    candidate.onload = null;
+    importProgress(job, 'Checking document…');
+    if (keepAnnotations) {
+      try {
+        validatePayload({
+          ...value,
+          documentHtml: '<!doctype html>\n' + candidate.contentDocument.documentElement.outerHTML,
+        });
+      } catch {
+        throw importError('INVALID_REVIEW');
+      }
+    }
+    if (prepared.bundle) await checkResources(candidate, resources, job.controller.signal);
+    job.controller.signal.throwIfAborted();
+    if (importJob !== job) throw new DOMException('Canceled', 'AbortError');
+    clearTimeout(job.stageTimeout);
+    // The candidate is already in its final parent. Moving it would reload it.
+    if (scrollScheduled !== null) {
+      cancelAnimationFrame(scrollScheduled);
+      scrollScheduled = null;
+    }
+    clearTimeout(previewTimer);
+    previewLoad++;
+    previewReady = false;
+    renderedRevision = -1;
+    previewRevision++;
     closeComposer();
-    selected = null; activeId = null; hideSelection();
-    model = {...value, documentHtml:html};
-    clearTimeout(previewTimer); previewLoad++; previewReady = false; renderedRevision = -1; previewRevision++;
-    expectedScroll.delete(frame); expectedScroll.delete(previewFrame);
+    selected = null;
+    activeId = null;
+    hideSelection();
+    expectedScroll.delete(frame);
+    expectedScroll.delete(previewFrame);
     scrollPairs = new Map();
-    if (value.view) { previewOpen = value.view.previewOpen; $('sync-scroll').checked = value.view.scrollTogether; }
-    if (previewOpen) $('preview-loading').hidden = false;
-    frame.hidden = false; $('empty-document').hidden = true;
-    await new Promise(resolve => { frame.onload = resolve; frame.srcdoc = html; });
-    frame.onload = null;
+    frame.remove();
+    frame = candidate;
+    job.candidate = null;
+    frame.id = 'document-frame';
+    frame.title = 'Handbook to review';
+    frame.hidden = false;
+    model = { ...value, documentHtml: html };
     bindDocument();
-    model.comments.forEach(c => updateMarkStatus(c));
+    model.comments.forEach((c) => updateMarkStatus(c));
+    if (value.view) {
+      previewOpen = value.view.previewOpen;
+      $('sync-scroll').checked = value.view.scrollTogether;
+    }
     dirty = false;
+    $('comment-filter').value = 'all';
+    $('empty-document').hidden = true;
+    if (previewOpen) {
+      $('preview-loading').hidden = false;
+      $('preview-area').setAttribute('aria-busy', 'true');
+    }
     $('filename').textContent = model.originalName;
     $('filename').title = model.originalName;
-    $('save-state').textContent = keepAnnotations ? 'Opened annotated copy · changes stay local' : 'Original file opened read only';
-    $('save-state').classList.remove('unsaved');
-    $('save-button').disabled = false; $('clean-button').disabled = false; $('preview-button').disabled = false;
-    $('document-label').textContent = 'Document';
     document.title = 'Review · ' + model.originalName;
+    $('save-state').textContent = prepared.bundle
+      ? 'Bundle converted locally · original file unchanged'
+      : keepAnnotations
+        ? 'Opened annotated copy · changes stay local'
+        : 'Original file opened read only';
+    $('save-state').classList.remove('unsaved');
     renderComments();
     setPreviewOpen(previewOpen);
+    finishImport(job, true);
+    if (prepared.bundle)
+      toast('Opened as a static document. Page layout may differ from the original.');
+  }
+  async function runImport(prepare, askDiscard = true) {
+    if (askDiscard && !importJob && !canDiscard()) return;
+    const previous = importJob;
+    if (previous) {
+      previous.controller.abort();
+      previous.candidate?.remove();
+      clearTimeout(previous.timeout);
+      clearTimeout(previous.stageTimeout);
+    }
+    const job = {
+      generation: ++importGeneration,
+      controller: new AbortController(),
+      ui: previous?.ui,
+    };
+    importJob = job;
+    importBusy(job);
+    importProgress(job, 'Reading document…');
+    job.timeout = setTimeout(() => {
+      job.timedOut = true;
+      job.controller.abort();
+    }, IMPORT_TIMEOUT_MS);
+    try {
+      const prepared = await abortable(prepare(job), job.controller.signal);
+      job.controller.signal.throwIfAborted();
+      if (importJob !== job) return;
+      importProgress(job, 'Preparing document…');
+      await stageReview(job, prepared);
+    } catch (error) {
+      if (importJob === job) {
+        if (job.timedOut) toast('Could not open the file. ' + importMessages.IMPORT_TIMEOUT, true);
+        else if (!job.controller.signal.aborted)
+          toast(
+            'Could not open the file. ' +
+              (importMessages[error.code] || importMessages.IMPORT_FAILED),
+            true,
+          );
+        finishImport(job, false);
+      }
+    } finally {
+      job.candidate?.remove();
+      clearTimeout(job.timeout);
+      clearTimeout(job.stageTimeout);
+    }
+  }
+  async function readFile(file) {
+    if (!file) return;
+    if (!/\.html?$/i.test(file.name) && file.type !== 'text/html') {
+      toast('Choose an .html or .htm document.', true);
+      return;
+    }
+    if (file.size > MAX_INPUT_BYTES) {
+      toast('Could not open the file. ' + importMessages.LIMIT_EXCEEDED, true);
+      return;
+    }
+    return runImport(async (job) => {
+      const signal = job.controller.signal;
+      const bytes = new Uint8Array(await abortable(file.arrayBuffer(), signal));
+      const head = new TextDecoder().decode(bytes.slice(0, 4096));
+      const declared = head.match(/<meta[^>]*charset\s*=\s*["']?\s*([\w-]+)/i);
+      const encoding =
+        bytes[0] === 255 && bytes[1] === 254
+          ? 'utf-16le'
+          : bytes[0] === 254 && bytes[1] === 255
+            ? 'utf-16be'
+            : bytes[0] === 239 && bytes[1] === 187 && bytes[2] === 191
+              ? 'utf-8'
+              : declared
+                ? declared[1]
+                : 'utf-8';
+      let text;
+      try {
+        text = new TextDecoder(encoding).decode(bytes);
+      } catch {
+        text = new TextDecoder().decode(bytes);
+      }
+      signal.throwIfAborted();
+      let parsed = parseHtml(text);
+      const embedded = parsed.querySelectorAll('script#review-data[type="application/json"]');
+      if (embedded.length > 1) throw importError('INVALID_REVIEW');
+      if (embedded.length) {
+        let value;
+        try {
+          value = JSON.parse(embedded[0].textContent);
+          if (value !== null) value = validatePayload(value);
+        } catch {
+          throw importError('INVALID_REVIEW');
+        }
+        if (value !== null) return { value, keepAnnotations: true };
+      }
+      const descriptor = bundleImporter.detect(parsed);
+      parsed = null;
+      if (descriptor) {
+        text = '';
+        let lastProgress = 0;
+        const result = await bundleImporter.convert(descriptor, {
+          signal,
+          onProgress: (p) => {
+            if (p.phase === 'normalize') importProgress(job, 'Preparing document…');
+            else if (performance.now() - lastProgress >= 100 || p.completed === p.total) {
+              lastProgress = performance.now();
+              importProgress(job, `Unpacking assets… ${p.completed} of ${p.total}`);
+            }
+          },
+        });
+        return {
+          value: { format: FORMAT, originalName: file.name, documentHtml: result.html, comments: [] },
+          keepAnnotations: false,
+          resources: result.resources,
+          bundle: true,
+        };
+      }
+      return {
+        value: { format: FORMAT, originalName: file.name, documentHtml: text, comments: [] },
+        keepAnnotations: false,
+      };
+    });
+  }
+  async function loadReview(value, keepAnnotations, askDiscard = false) {
+    return runImport(async () => ({ value, keepAnnotations }), askDiscard);
   }
 
   function setPreviewOpen(open) {
@@ -326,6 +1268,7 @@
     previewFrame.srcdoc = '<!doctype html>\n' + copy.outerHTML;
   }
   function documentClick(doc, e) {
+    if (importJob) { e.preventDefault(); return; }
     const mark = e.target.closest('mark[data-hr-id]');
     if (mark && !doc.getSelection().toString().trim()) { e.preventDefault(); focusComment(mark.dataset.hrId); }
     const anchor = e.target.closest('a');
@@ -340,6 +1283,14 @@
   }
   function bindDocument() {
     const doc = frame.contentDocument;
+    // WebKit bug 218086 blocks even parent-owned listeners in this sandbox.
+    // Detect the capability without enabling source scripts or changing CSP.
+    let receivesEvents=false;
+    const probe=()=>{receivesEvents=true;};
+    doc.addEventListener('hr-capability-check',probe);
+    doc.dispatchEvent(new Event('hr-capability-check'));
+    doc.removeEventListener('hr-capability-check',probe);
+    $('browser-notice').hidden=receivesEvents;
     doc.addEventListener('mouseup', () => setTimeout(captureSelection, 0));
     doc.addEventListener('keyup', e => { if (['Shift','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) captureSelection(); });
     doc.addEventListener('keydown', keyboardShortcut);
@@ -352,7 +1303,7 @@
   }
   function hideSelection() { $('selection-action').hidden = true; }
   function captureSelection() {
-    if (!model || draft) return;
+    if (!model || draft || importJob) return;
     const selection = frame.contentDocument.getSelection();
     if (!selection || selection.isCollapsed || !selection.rangeCount || !selection.toString().trim()) { selected = null; $('add-selection').disabled = true; hideSelection(); return; }
     const range = selection.getRangeAt(0).cloneRange();
@@ -542,9 +1493,11 @@
     return prefix + (/\.html?$/i.test(base) ? base : base + '.html');
   }
   function download(text, name) {
+    if (new Blob([text]).size > MAX_DOWNLOAD_BYTES) { toast('This copy is too large to download. Your review has not been marked as saved.',true); return false; }
     const url = URL.createObjectURL(new Blob([text],{type:'text/html;charset=utf-8'}));
     const anchor = document.createElement('a'); anchor.href = url; anchor.download = name; document.body.append(anchor); anchor.click(); anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 60000);
+    return true;
   }
   function reviewSnapshot() {
     const doc = frame.contentDocument.documentElement.cloneNode(true);
@@ -557,7 +1510,7 @@
     const copy = template.cloneNode(true);
     copy.querySelector('#review-data').textContent = JSON.stringify(reviewSnapshot()).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
     copy.querySelector('title').textContent = 'Review · ' + model.originalName;
-    download('<!doctype html>\n' + copy.outerHTML,outputName('annotated-'));
+    if (!download('<!doctype html>\n' + copy.outerHTML,outputName('annotated-'))) return;
     dirty = false;
     $('save-state').textContent = 'Copy downloaded · save again after further edits';
     $('save-state').classList.remove('unsaved');
@@ -570,10 +1523,11 @@
     copy.querySelectorAll('mark[data-hr-id]').forEach(mark => mark.replaceWith(...mark.childNodes));
     copy.querySelectorAll('style[data-hr-style]').forEach(style => style.remove());
     copy.querySelectorAll('[data-hr-original-href]').forEach(link => { link.setAttribute('href',link.dataset.hrOriginalHref); delete link.dataset.hrOriginalHref; if (link.dataset.hrAddedTitle) { link.removeAttribute('title'); delete link.dataset.hrAddedTitle; } });
-    download('<!doctype html>\n' + copy.outerHTML,outputName('revised-'));
+    if (!download('<!doctype html>\n' + copy.outerHTML,outputName('revised-'))) return;
     toast('Downloaded revised HTML with accepted edits and no comments.');
   }
   function keyboardShortcut(e) {
+    if (importJob) { if (e.key === 'Escape') { e.preventDefault(); cancelImport(); } else if ((e.ctrlKey || e.metaKey) && ['s','m'].includes(e.key.toLowerCase())) e.preventDefault(); return; }
     if ((e.ctrlKey || e.metaKey) && e.altKey && e.key.toLowerCase() === 'm') { e.preventDefault(); captureSelection(); startComment(); }
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's' && model) { e.preventDefault(); saveAnnotated(); }
     if (e.key === 'Escape') hideSelection();
@@ -581,7 +1535,8 @@
   $('open-button').addEventListener('click',() => $('file-input').click());
   $('choose-button').addEventListener('click',() => $('file-input').click());
   $('file-input').addEventListener('change', e => { const file = e.target.files[0]; e.target.value = ''; readFile(file); });
-  $('demo-button').addEventListener('click',() => { if (canDiscard()) loadReview({format:FORMAT,originalName:'example-handbook.html',documentHtml:sampleHtml,comments:[]},false); });
+  $('demo-button').addEventListener('click',() => loadReview({format:FORMAT,originalName:'example-handbook.html',documentHtml:sampleHtml,comments:[]},false,true));
+  $('cancel-import').addEventListener('click',cancelImport);
   $('save-button').addEventListener('click',saveAnnotated);
   $('clean-button').addEventListener('click',exportClean);
   $('preview-button').addEventListener('click',() => setPreviewOpen(!previewOpen));
@@ -605,8 +1560,8 @@
   document.addEventListener('drop',e => { e.preventDefault(); dragDepth = 0; $('drop-overlay').hidden = true; const file = e.dataTransfer.files[0]; if (file) readFile(file); });
   try {
     const saved = JSON.parse($('review-data').textContent);
-    if (saved) loadReview(validatePayload(saved),true).catch(err => toast('Could not restore the review: ' + err.message,true));
-  } catch (err) { toast('Could not restore the review: ' + err.message,true); }
+    if (saved) loadReview(validatePayload(saved),true);
+  } catch (err) { toast('Could not restore the review. ' + importMessages.INVALID_REVIEW,true); }
 })();
 </script>
 </body>

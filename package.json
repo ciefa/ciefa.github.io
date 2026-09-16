@@ -1,0 +1,16 @@
+{
+  "name": "local-html-reviewer",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "playwright test --grep-invert @performance",
+    "test:chromium": "playwright test --project=chromium --grep-invert @performance",
+    "test:performance": "playwright test tests/performance.spec.cjs --project=chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.57.0"
+  }
+}
