@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; frame-src 'self' blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>HTML reviewer</title>
+<style>
+:root{color-scheme:light;--ink:#18243a;--muted:#58677b;--line:#d8dfe9;--blue:#254c91;--blue-soft:#eef3ff;--amber:#fff0a8;--surface:#f2f5f9;--green:#206943;--red:#a52a3a;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;color:var(--ink);background:var(--surface)}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button,select{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:.6rem .85rem;font-size:.875rem;font-weight:600}button:hover:not(:disabled){background:#edf2fa;border-color:#b3c0d5}button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7ca4ea;outline-offset:3px}.primary{background:var(--blue);border-color:var(--blue);color:white}.primary:hover:not(:disabled){background:#1b3c79;color:white}.quiet{border-color:transparent;background:transparent}.small{padding:.35rem .6rem;font-size:.8125rem}.danger{color:var(--red)}.accept{color:var(--green);background:#eff9f2;border-color:#bbd9c6}.reject{color:var(--red)}[hidden]{display:none!important}
+.app{height:100dvh;min-height:440px;display:grid;grid-template-rows:auto minmax(0,1fr) auto}.topbar{min-height:76px;background:white;border-bottom:1px solid var(--line);padding:13px 24px;display:flex;align-items:center;gap:22px}.brand{display:flex;align-items:center;gap:11px;white-space:nowrap}.brand-icon{position:relative;display:block;width:29px;height:34px;border:2px solid var(--blue);border-radius:4px;background:linear-gradient(var(--amber),var(--amber)) 5px 8px/16px 7px no-repeat}.brand-icon:after{content:"";position:absolute;left:5px;top:21px;width:13px;height:2px;background:var(--blue)}.brand strong{font-size:1.05rem;letter-spacing:-.02em}.file-info{border-left:1px solid var(--line);padding-left:22px;min-width:0;flex:1}.filename{font-size:.875rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.save-state{color:var(--muted);font-size:.8125rem;margin-top:3px}.save-state.unsaved{color:#8b5400}.top-actions{display:flex;gap:8px;align-items:center}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:0}.reading-area{min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);position:relative}.reading-bar{min-height:48px;padding:9px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);font-size:.8125rem;color:var(--muted)}.reading-bar strong{color:var(--ink);font-size:.875rem}.document-stage{position:relative;min-height:0;overflow:hidden;background:#fff}.document-stage iframe{width:100%;height:100%;display:block;border:0;background:white}.empty-document{height:100%;display:flex;align-items:center;justify-content:center;padding:36px;overflow:auto}.empty-inner{max-width:480px;width:100%;border-top:4px solid var(--blue);padding-top:28px}.eyebrow{font-size:.75rem;font-weight:750;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}.empty-inner h1{font-size:2rem;font-weight:650;line-height:1.18;letter-spacing:-.04em;margin:14px 0}.empty-inner p{color:var(--muted);line-height:1.65;font-size:1rem;margin:0 0 24px}.empty-actions{display:flex;gap:10px;flex-wrap:wrap}.empty-inner .local-note{margin-top:24px;margin-bottom:0;font-size:.8125rem}.sidebar{border-left:1px solid var(--line);background:#f8fafd;display:flex;flex-direction:column;min-height:0}.sidebar-top{padding:16px 18px 13px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:white;border-bottom:1px solid var(--line)}.sidebar-top h2{margin:0;font-size:1rem}.count{font-size:.8125rem;font-weight:500;color:var(--muted);margin-left:7px}.sidebar-top select{padding:5px 7px;font-size:.8125rem;font-weight:400;max-width:120px}.notes-scroll{padding:16px;overflow-y:auto;flex:1;min-height:0;scroll-behavior:smooth}.sidebar-empty{border:1px dashed #bbc8db;border-radius:8px;padding:22px 19px;color:var(--muted);font-size:.875rem;line-height:1.65}.sidebar-empty strong{color:var(--ink);display:block;margin-bottom:7px}.sidebar-empty kbd{font-size:.75rem;border:1px solid var(--line);background:white;padding:2px 4px;border-radius:4px}.card{background:white;border:1px solid var(--line);border-radius:9px;padding:15px;margin-bottom:13px;box-shadow:0 2px 3px #14223804;scroll-margin:15px}.card.active{border-color:#6e93cc;box-shadow:0 0 0 2px #dce8ff}.card-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px}.card-number{font-size:.75rem;color:var(--muted);font-weight:650}.badge{font-size:.75rem;font-weight:650;padding:3px 7px;border-radius:4px;background:#eff2f6;color:#56657b}.badge.open{background:#fff4c9;color:#795600}.badge.accepted,.badge.resolved{background:#e5f4e9;color:#23603b}.badge.rejected{background:#f9e9ec;color:#913947}.quote{display:block;text-align:left;width:100%;border:0;border-left:3px solid #e9bd31;border-radius:0;padding:7px 9px;background:#fffbee;font-size:.8125rem;line-height:1.55;font-weight:400;white-space:pre-wrap;overflow-wrap:anywhere;max-height:145px;overflow:auto}.quote:hover:not(:disabled){border-color:#bd9105;background:#fff4c9}.note-text{font-size:.875rem;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}.replacement-label{font-size:.75rem;color:var(--green);font-weight:650;margin-top:14px}.replacement{font-size:.875rem;line-height:1.6;background:#f0f8f2;border-left:3px solid #91bf9b;padding:8px 10px;margin-top:6px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:190px;overflow:auto}.replacement.deletion{font-style:italic;color:var(--muted)}.card-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.card-tools{margin-left:auto;display:flex;gap:1px}.card-tools button{font-weight:450;padding:.35rem .4rem;font-size:.75rem}.composer{background:white;border:1px solid #8eacd9;border-radius:9px;padding:16px;margin-bottom:16px;box-shadow:0 0 0 3px #e6edfa}.composer h3{font-size:.9375rem;margin:0 0 13px}.composer label.field-label{display:block;font-size:.8125rem;font-weight:650;margin:16px 0 7px}.composer textarea{width:100%;resize:vertical;min-height:95px;border:1px solid #bfcbdc;border-radius:6px;padding:9px 10px;font-size:.875rem;line-height:1.5;color:var(--ink);background:white}.checkbox-label{display:flex;align-items:center;gap:8px;margin:13px 0 0;font-size:.875rem;font-weight:600}.checkbox-label input{width:16px;height:16px;accent-color:var(--blue)}.hint{font-size:.75rem;line-height:1.5;color:var(--muted);margin:7px 0}.composer-actions{display:flex;gap:8px;margin-top:14px}.composer-error{color:var(--red);font-size:.8125rem;line-height:1.5;margin:10px 0 0}.selection-action{position:fixed;z-index:10;background:var(--ink);border-color:var(--ink);color:white;box-shadow:0 3px 15px #152b4c30;padding:.55rem .8rem;font-size:.8125rem}.selection-action:hover:not(:disabled){color:white;background:var(--blue);border-color:var(--blue)}.footer{min-height:35px;display:flex;align-items:center;justify-content:space-between;padding:8px 24px;font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);background:white;gap:12px}.footer button{font-size:.75rem;padding:0;border:0;color:var(--blue);font-weight:500;background:none}.toast{position:fixed;left:50%;bottom:50px;transform:translateX(-50%);max-width:min(620px,90vw);padding:12px 18px;background:#1e2d47;color:white;border-radius:8px;font-size:.875rem;line-height:1.45;box-shadow:0 4px 20px #18243a30;z-index:30}.toast.error{background:#8e2637}.modal{border:1px solid var(--line);border-radius:12px;padding:26px;max-width:540px;width:calc(100vw - 36px);color:var(--ink);max-height:85dvh;overflow:auto}.modal::backdrop{background:#11203b66}.modal h2{margin:0 0 16px;font-size:1.25rem}.modal p,.modal li{font-size:.875rem;line-height:1.65}.modal ol{padding-left:22px}.modal .modal-end{display:flex;justify-content:flex-end;margin-top:20px}.modal code{background:var(--surface);padding:2px 4px;border-radius:4px;font-size:.8125rem}.drop-overlay{position:fixed;inset:8px;z-index:50;background:#eef3fff2;border:3px dashed var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.4rem;font-weight:650;pointer-events:none}
+@media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr) 320px}.topbar{padding:12px 16px;gap:15px}.file-info{padding-left:15px}.brand strong{font-size:.9375rem}.top-actions{gap:5px}.top-actions button{padding:.6rem .65rem}.reading-bar{padding:9px 16px}.selection-hint{display:none}}
+@media(max-width:720px){.topbar{flex-wrap:wrap;gap:10px}.brand{flex:1}.file-info{order:3;flex-basis:100%;padding:0;border:0;display:flex;align-items:center;justify-content:space-between;gap:12px}.save-state{margin:0;white-space:nowrap}.filename{max-width:55%}.top-actions button{font-size:.75rem;padding:.55rem}.top-actions #help-button{display:none}.workspace{grid-template-columns:1fr;grid-template-rows:minmax(220px,1fr) minmax(170px,.7fr)}.sidebar{border-left:0;border-top:1px solid var(--line)}.sidebar-top{padding:9px 16px}.notes-scroll{padding:12px}.empty-document{padding:20px}.empty-inner{padding-top:16px;max-width:440px}.empty-inner h1{font-size:1.5rem;margin:10px 0}.empty-inner p{font-size:.875rem;margin-bottom:14px}.empty-inner .local-note{margin-top:12px}.footer{padding:8px 14px}.footer .footer-hint{display:none}.card{margin-bottom:10px}.reading-bar{min-height:40px;padding:6px 14px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon" aria-hidden="true"></span><strong>HTML reviewer</strong></div>
+    <div class="file-info"><div class="filename" id="filename">No document open</div><div class="save-state" id="save-state">Your original stays untouched</div></div>
+    <div class="top-actions"><button id="open-button">Open HTML</button><button id="save-button" class="primary" disabled>Save annotated copy</button><button id="help-button" class="quiet" aria-label="Help">Help</button></div>
+  </header>
+  <main class="workspace">
+    <section class="reading-area" aria-label="Document">
+      <div class="reading-bar"><strong id="document-label">Document</strong><span class="selection-hint">Select text → add a comment or suggest a change</span><button id="add-selection" class="small" disabled>Add comment</button></div>
+      <div class="document-stage">
+        <div id="empty-document" class="empty-document"><div class="empty-inner"><span class="eyebrow">Proofread in your browser</span><h1>A margin for your thoughts.</h1><p>Open your HTML handbook, select a passage, and leave a comment. Suggest new wording and review each change in place.</p><div class="empty-actions"><button id="choose-button" class="primary">Choose HTML file</button><button id="demo-button">Try an example</button></div><p class="local-note">Works locally. Your document is never uploaded.<br>Save a separate copy with your comments included.</p></div></div>
+        <iframe id="document-frame" title="Handbook to review" sandbox="allow-same-origin" referrerpolicy="no-referrer" hidden></iframe>
+      </div>
+    </section>
+    <aside class="sidebar" aria-label="Review comments">
+      <div class="sidebar-top"><h2>Comments<span class="count" id="comment-count">0</span></h2><select id="comment-filter" aria-label="Filter comments"><option value="all">All comments</option><option value="open">Open only</option></select></div>
+      <div class="notes-scroll" id="notes-scroll">
+        <form id="composer" class="composer" hidden>
+          <h3 id="composer-title">New comment</h3>
+          <div class="quote" id="selected-quote"></div>
+          <label class="field-label" for="note-input">Comment</label><textarea id="note-input" placeholder="What would you like to point out?"></textarea>
+          <label class="checkbox-label"><input type="checkbox" id="suggest-toggle">Suggest replacement text</label>
+          <p id="selection-limit" class="hint" hidden>For a replacement, select text within one paragraph, heading, or table cell. You can comment on this entire selection.</p>
+          <div id="replacement-fields" hidden><label class="field-label" for="replacement-input">Replace selection with</label><textarea id="replacement-input" placeholder="New wording…"></textarea><p class="hint">Leave empty to suggest deleting the selected text. Replacements use plain text.</p></div>
+          <p id="composer-error" class="composer-error" role="alert" hidden></p>
+          <div class="composer-actions"><button class="primary" type="submit" id="submit-comment">Add comment</button><button type="button" id="cancel-comment">Cancel</button></div>
+        </form>
+        <div id="sidebar-empty" class="sidebar-empty"><strong>Start with a passage.</strong>Select text in the document, then click <b>Add comment</b>.<br><br>You can also press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>M</kbd>.</div>
+        <div id="comment-list"></div>
+      </div>
+    </aside>
+  </main>
+  <footer class="footer"><span>Local file · Nothing is uploaded</span><span class="footer-hint" id="footer-hint">Annotated copies reopen with all review controls.</span><button id="clean-button" disabled>Export revised HTML</button></footer>
+</div>
+<input type="file" id="file-input" accept=".html,.htm,text/html" hidden>
+<button id="selection-action" class="selection-action" hidden>＋ Comment / suggest</button>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<div id="drop-overlay" class="drop-overlay" hidden>Drop your HTML file here</div>
+<dialog id="help-dialog" class="modal"><h2>A quick guide</h2><ol><li><b>Open HTML</b> to choose your handbook. The original file is read only.</li><li><b>Select text</b>, then add a comment. Tick <b>Suggest replacement text</b> to propose an edit.</li><li><b>Accept</b> replaces that passage in the displayed document. <b>Reject</b> keeps its original wording. You can undo either decision.</li><li><b>Save annotated copy</b> downloads <code>annotated-your-filename.html</code>. Open that copy directly to continue reviewing or send it to your manager.</li></ol><p><b>Save again after making changes.</b> Closing or refreshing the page discards anything you have not downloaded. This tool does not overwrite files or save automatically.</p><p><b>Export revised HTML</b> creates a separate document with accepted edits applied, without the comments or review controls. Pending and rejected suggestions leave the wording unchanged.</p><p><b>For static HTML documents.</b> Embedded styles and images are supported. Scripts, external resources, and external links are disabled in the review. Linked files are not bundled. Replacement suggestions work within one paragraph or table cell and inherit the formatting at the start of the selection; comments can span multiple paragraphs.</p><div class="modal-end"><button id="close-help" class="primary">Got it</button></div></dialog>
+<script id="review-data" type="application/json">null</script>
+<script>
+(() => {
+  'use strict';
+  const FORMAT = 'local-html-reviewer-v1';
+  const $ = id => document.getElementById(id);
+  const frame = $('document-frame');
+  const template = document.documentElement.cloneNode(true);
+  template.querySelector('#review-data').textContent = 'null';
+  let model = null, dirty = false, selected = null, draft = null, activeId = null, toastTimer;
+  const reviewStyle = `
+    mark[data-hr-id]{background:#fff0a8!important;color:inherit!important;font:inherit!important;padding:0!important;margin:0!important;border:0!important;border-radius:2px!important;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer;text-decoration:none!important}
+    mark[data-hr-state="accepted"]{background:#e1f2e6!important;text-decoration:underline dotted #40815a!important;text-underline-offset:3px}
+    mark[data-hr-state="rejected"],mark[data-hr-state="resolved"]{background:transparent!important;text-decoration:underline dotted #94a0b0!important;text-underline-offset:3px}
+    mark[data-hr-active="true"]{background:#ffdf73!important;outline:2px solid #c88d11!important;outline-offset:1px}
+    mark[data-hr-id]:empty{display:inline-block!important;min-width:3px!important;height:1em!important;vertical-align:text-bottom!important}
+    mark[data-hr-id][data-hr-state="accepted"]:empty:not([data-hr-part="0"]){display:none!important}
+    ::selection{background:#b7d3ff;color:#142d54}
+  `;
+  const documentCsp = "default-src 'none'; script-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src data:; media-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'";
+  const sampleHtml = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Example handbook</title><style>body{font:17px/1.8 system-ui,sans-serif;color:#24334b;max-width:820px;margin:0 auto;padding:42px 48px 100px}h1{font-size:36px;line-height:1.2;letter-spacing:-1px;color:#18243a}h2{font-size:23px;margin-top:36px;line-height:1.4}p{margin:16px 0}small{color:#62748b;letter-spacing:.08em;text-transform:uppercase}code{background:#eff3fa;padding:2px 5px;border-radius:4px;font-size:.88em}table{border-collapse:collapse;width:100%;font-size:15px}th,td{border:1px solid #d5ddea;text-align:left;padding:11px 14px}th{background:#f1f5fa}blockquote{border-left:3px solid #d8a532;margin:24px 0;padding:4px 20px;color:#526278}@media(max-width:500px){body{padding:24px}}</style></head><body><small>Example · Product handbook</small><h1>A place for clearer documentation.</h1><p>This is a sample handbook. Select a few words to add your first comment, or propose a correction to the sentence below.</p><h2>1. Getting started</h2><p id="sample-typo">Every team member recieve an invitation to the workspace.</p><p id="sample-rich">Choose <strong>Settings</strong> and then <em>Notifications</em> to update your preferences. Changes are saved automatically.</p><blockquote>Try selecting text across two paragraphs to leave a broader comment.</blockquote><h2>2. Working with your team</h2><p id="sample-repeat">An administrator can invite new members. An administrator can invite new members.</p><ul><li>Use a clear title for each shared space.</li><li>Write a short description so people know where to start.</li><li>Review permissions before inviting someone new.</li></ul><h2>3. Roles and access</h2><table><thead><tr><th>Role</th><th>Responsibilities</th></tr></thead><tbody><tr><td>Member</td><td id="sample-cell">Read and contribute to shared discussions.</td></tr><tr><td>Administrator</td><td>Manage membership and workspace settings.</td></tr></tbody></table><h2>4. Saving your review</h2><p>The <b>annotated copy</b> keeps your comments and decisions together with the document. Open it again to continue reviewing.</p><p>The <b>revised HTML</b> contains your accepted wording without this tool’s review controls.</p></body></html>`;
+
+  function toast(message, error = false) {
+    clearTimeout(toastTimer);
+    $('toast').textContent = message;
+    $('toast').classList.toggle('error', error);
+    $('toast').hidden = false;
+    toastTimer = setTimeout(() => { $('toast').hidden = true; }, error ? 6500 : 4200);
+  }
+  function setDirty() {
+    dirty = true;
+    $('save-state').textContent = 'Unsaved changes · download a copy to keep them';
+    $('save-state').classList.add('unsaved');
+  }
+  function hasDraftChanges() {
+    if (!draft) return false;
+    return $('note-input').value !== draft.initialNote || $('suggest-toggle').checked !== draft.initialSuggest || ($('suggest-toggle').checked && $('replacement-input').value !== draft.initialReplacement);
+  }
+  function canDiscard() { return !(dirty || hasDraftChanges()) || confirm('There are changes that have not been saved. Open another document and discard them?'); }
+  function newId() { return 'hr-' + Array.from(crypto.getRandomValues(new Uint8Array(10)), n => n.toString(16).padStart(2, '0')).join(''); }
+  function marksFor(id, root = frame.contentDocument) {
+    return Array.from(root.querySelectorAll(`mark[data-hr-id="${id}"]`)).sort((a,b) => Number(a.dataset.hrPart) - Number(b.dataset.hrPart));
+  }
+  function parseHtml(html) { return new DOMParser().parseFromString(html, 'text/html'); }
+  function sanitizeDocument(source, keepAnnotations = false) {
+    const doc = parseHtml(source);
+    doc.querySelectorAll('script,iframe,frame,object,embed,base,link,meta[http-equiv],meta[charset],style[data-hr-style]').forEach(node => node.remove());
+    for (const el of doc.querySelectorAll('*')) {
+      for (const attr of Array.from(el.attributes)) {
+        if (/^on/i.test(attr.name) || ['srcdoc','ping','autofocus','contenteditable','formaction','target'].includes(attr.name.toLowerCase()) || (!keepAnnotations && attr.name.startsWith('data-hr-'))) el.removeAttribute(attr.name);
+      }
+      if (el.hasAttribute('href') && !el.getAttribute('href').startsWith('#')) {
+        el.dataset.hrOriginalHref = el.getAttribute('href');
+        el.removeAttribute('href');
+        if (!el.hasAttribute('title')) { el.dataset.hrAddedTitle = 'true'; el.setAttribute('title', 'External links are disabled in this local review.'); }
+      }
+    }
+    const charset = doc.createElement('meta'); charset.setAttribute('charset', 'utf-8');
+    const csp = doc.createElement('meta'); csp.httpEquiv = 'Content-Security-Policy'; csp.content = documentCsp;
+    doc.head.prepend(charset, csp);
+    const style = doc.createElement('style'); style.dataset.hrStyle = 'true'; style.textContent = reviewStyle; doc.head.append(style);
+    return '<!doctype html>\n' + doc.documentElement.outerHTML;
+  }
+  function validatePayload(value) {
+    if (!value || value.format !== FORMAT || typeof value.documentHtml !== 'string' || typeof value.originalName !== 'string' || !Array.isArray(value.comments)) throw new Error('This annotated file has an invalid review format.');
+    const ids = new Set();
+    for (const c of value.comments) {
+      if (!c || !/^hr-[a-f0-9]{20}$/.test(c.id) || ids.has(c.id) || typeof c.quote !== 'string' || typeof c.note !== 'string' || !(c.replacement === null || typeof c.replacement === 'string') || !['open','accepted','rejected','resolved'].includes(c.status) || !Array.isArray(c.originalParts) || !c.originalParts.length || c.originalParts.some(v => typeof v !== 'string')) throw new Error('This annotated file contains an invalid comment.');
+      if ((c.replacement === null && !['open','resolved'].includes(c.status)) || (c.replacement !== null && c.status === 'resolved')) throw new Error('This annotated file contains an invalid decision.');
+      ids.add(c.id);
+    }
+    const doc = parseHtml(value.documentHtml);
+    for (const c of value.comments) {
+      const marks = marksFor(c.id, doc);
+      if (marks.length !== c.originalParts.length || marks.some((m,i) => Number(m.dataset.hrPart) !== i || m.children.length || m.textContent !== (c.status === 'accepted' ? (i === 0 ? c.replacement : '') : c.originalParts[i]))) throw new Error('Some comment anchors in this file are missing or damaged. The file was not opened.');
+    }
+    if (Array.from(doc.querySelectorAll('[data-hr-id]')).some(m => !ids.has(m.dataset.hrId))) throw new Error('This review contains unrecognized comment anchors.');
+    return { format:FORMAT, originalName:value.originalName, documentHtml:value.documentHtml, comments:value.comments };
+  }
+  async function readFile(file) {
+    if (!file) return;
+    if (!/\.html?$/i.test(file.name) && file.type !== 'text/html') { toast('Choose an .html or .htm document.', true); return; }
+    if (!canDiscard()) return;
+    try {
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      const head = new TextDecoder().decode(bytes.slice(0,4096));
+      const declared = head.match(/<meta[^>]*charset\s*=\s*["']?\s*([\w-]+)/i);
+      const encoding = bytes[0] === 255 && bytes[1] === 254 ? 'utf-16le' : bytes[0] === 254 && bytes[1] === 255 ? 'utf-16be' : bytes[0] === 239 && bytes[1] === 187 && bytes[2] === 191 ? 'utf-8' : declared ? declared[1] : 'utf-8';
+      let text;
+      try { text = new TextDecoder(encoding).decode(bytes); } catch { text = new TextDecoder().decode(bytes); }
+      const embedded = parseHtml(text).querySelector('script#review-data[type="application/json"]');
+      let review = null;
+      if (embedded) {
+        try { const payload = JSON.parse(embedded.textContent); if (payload && payload.format === FORMAT) review = validatePayload(payload); } catch (err) { throw new Error('Could not read this annotated copy: ' + err.message); }
+      }
+      if (review) await loadReview(review, true);
+      else await loadReview({format:FORMAT, originalName:file.name, documentHtml:text, comments:[]}, false);
+    } catch (err) { toast('Could not open the file. ' + err.message, true); }
+  }
+  async function loadReview(value, keepAnnotations) {
+    const html = sanitizeDocument(value.documentHtml, keepAnnotations);
+    closeComposer();
+    selected = null; activeId = null; hideSelection();
+    model = {...value, documentHtml:html};
+    frame.hidden = false; $('empty-document').hidden = true;
+    await new Promise(resolve => { frame.onload = resolve; frame.srcdoc = html; });
+    frame.onload = null;
+    bindDocument();
+    model.comments.forEach(c => updateMarkStatus(c));
+    dirty = false;
+    $('filename').textContent = model.originalName;
+    $('filename').title = model.originalName;
+    $('save-state').textContent = keepAnnotations ? 'Opened annotated copy · changes stay local' : 'Original file opened read only';
+    $('save-state').classList.remove('unsaved');
+    $('save-button').disabled = false; $('clean-button').disabled = false;
+    $('document-label').textContent = 'Document';
+    document.title = 'Review · ' + model.originalName;
+    renderComments();
+  }
+  function bindDocument() {
+    const doc = frame.contentDocument;
+    doc.addEventListener('mouseup', () => setTimeout(captureSelection, 0));
+    doc.addEventListener('keyup', e => { if (['Shift','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) captureSelection(); });
+    doc.addEventListener('keydown', keyboardShortcut);
+    doc.addEventListener('scroll', hideSelection, {passive:true,capture:true});
+    doc.addEventListener('submit', e => e.preventDefault(), true);
+    doc.addEventListener('dragover', e => { if (Array.from(e.dataTransfer.types).includes('Files')) e.preventDefault(); });
+    doc.addEventListener('drop', e => { e.preventDefault(); dragDepth = 0; $('drop-overlay').hidden = true; if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]); });
+    doc.addEventListener('click', e => {
+      const mark = e.target.closest('mark[data-hr-id]');
+      if (mark && !doc.getSelection().toString().trim()) { e.preventDefault(); focusComment(mark.dataset.hrId); }
+      const anchor = e.target.closest('a');
+      if (anchor) {
+        e.preventDefault();
+        const href = anchor.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          let id; try { id = decodeURIComponent(href.slice(1)); } catch { id = href.slice(1); }
+          const target = doc.getElementById(id) || Array.from(doc.getElementsByName(id))[0];
+          if (target) target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      }
+    }, true);
+  }
+  function hideSelection() { $('selection-action').hidden = true; }
+  function captureSelection() {
+    if (!model || draft) return;
+    const selection = frame.contentDocument.getSelection();
+    if (!selection || selection.isCollapsed || !selection.rangeCount || !selection.toString().trim()) { selected = null; $('add-selection').disabled = true; hideSelection(); return; }
+    const range = selection.getRangeAt(0).cloneRange();
+    if (!frame.contentDocument.body.contains(range.commonAncestorContainer)) return;
+    selected = {range, quote:selection.toString()};
+    $('add-selection').disabled = false;
+    const rects = range.getClientRects();
+    const rect = rects.length ? rects[rects.length - 1] : range.getBoundingClientRect();
+    const frameRect = frame.getBoundingClientRect();
+    const button = $('selection-action');
+    button.hidden = false;
+    const left = Math.max(frameRect.left + 8, Math.min(frameRect.left + rect.left, frameRect.right - button.offsetWidth - 8));
+    const top = Math.max(frameRect.top + 5, Math.min(frameRect.top + rect.bottom + 7, frameRect.bottom - button.offsetHeight - 8));
+    button.style.left = left + 'px'; button.style.top = top + 'px';
+  }
+  function selectedParts(range) {
+    const doc = frame.contentDocument;
+    const root = range.commonAncestorContainer;
+    const nodes = [];
+    if (root.nodeType === 3) nodes.push(root);
+    else {
+      const walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) if (range.intersectsNode(walker.currentNode)) nodes.push(walker.currentNode);
+    }
+    return nodes.filter(node => !node.parentElement.closest('style,script,noscript,textarea,select,button')).map(node => ({node, start:node === range.startContainer ? range.startOffset : 0, end:node === range.endContainer ? range.endOffset : node.length})).filter(p => p.start < p.end);
+  }
+  function blockFor(node) {
+    let el = node.parentElement;
+    while (el && el !== frame.contentDocument.body) {
+      if (['block','list-item','table-cell','flex','grid','flow-root','table-caption'].includes(frame.contentWindow.getComputedStyle(el).display)) return el;
+      el = el.parentElement;
+    }
+    return frame.contentDocument.body;
+  }
+  function startComment() {
+    if (draft) { $('note-input').focus(); return; }
+    if (!selected) { captureSelection(); if (!selected) { toast('Select some document text first.'); return; } }
+    const parts = selectedParts(selected.range);
+    if (!parts.length) { toast('Select document text to comment on.', true); return; }
+    const overlap = parts.find(p => p.node.parentElement.closest('[data-hr-id]'));
+    if (overlap) { focusComment(overlap.node.parentElement.closest('[data-hr-id]').dataset.hrId); toast('This selection overlaps an existing annotation. Edit that comment, or select a separate passage.', true); return; }
+    const blocks = new Set(parts.filter(p => p.node.textContent.slice(p.start,p.end).trim()).map(p => blockFor(p.node)));
+    draft = {parts, quote:selected.quote, canReplace:blocks.size <= 1, initialNote:'', initialSuggest:false, initialReplacement:selected.quote};
+    showComposer();
+  }
+  function showComposer(comment = null) {
+    hideSelection();
+    $('composer').hidden = false;
+    $('composer-title').textContent = comment ? 'Edit comment' : 'New comment';
+    $('submit-comment').textContent = comment ? 'Save comment' : 'Add comment';
+    $('selected-quote').textContent = draft.quote;
+    $('note-input').value = draft.initialNote;
+    $('suggest-toggle').checked = draft.initialSuggest;
+    $('suggest-toggle').disabled = !draft.canReplace;
+    $('selection-limit').hidden = draft.canReplace;
+    $('replacement-input').value = draft.initialReplacement;
+    $('replacement-fields').hidden = !draft.initialSuggest;
+    $('composer-error').hidden = true;
+    $('sidebar-empty').hidden = true;
+    $('notes-scroll').scrollTop = 0;
+    $('note-input').focus();
+  }
+  function closeComposer() {
+    draft = null;
+    $('composer').hidden = true;
+    $('composer-error').hidden = true;
+    selected = null;
+    $('add-selection').disabled = true;
+    hideSelection();
+    if (model) renderComments();
+  }
+  function submitComment(e) {
+    e.preventDefault();
+    if (!draft) return;
+    const note = $('note-input').value.trim();
+    const replacement = $('suggest-toggle').checked ? $('replacement-input').value : null;
+    if (!note && replacement === null) { $('composer-error').textContent = 'Write a comment or suggest replacement text.'; $('composer-error').hidden = false; $('note-input').focus(); return; }
+    let c;
+    if (draft.editId) {
+      c = model.comments.find(c => c.id === draft.editId);
+      c.note = note;
+      if (c.replacement !== replacement) { c.replacement = replacement; c.status = 'open'; updateMarkStatus(c); }
+    } else {
+      const id = newId();
+      c = {id, quote:draft.quote, note, replacement, status:'open', originalParts:draft.parts.map(p => p.node.textContent.slice(p.start,p.end))};
+      draft.parts.slice().reverse().forEach((p, reverseIndex) => {
+        const index = draft.parts.length - 1 - reverseIndex;
+        if (p.end < p.node.length) p.node.splitText(p.end);
+        const target = p.start ? p.node.splitText(p.start) : p.node;
+        const mark = frame.contentDocument.createElement('mark');
+        mark.dataset.hrId = id; mark.dataset.hrPart = index; mark.dataset.hrState = 'open';
+        target.replaceWith(mark); mark.append(target);
+      });
+      model.comments.push(c);
+    }
+    frame.contentDocument.getSelection().removeAllRanges();
+    activeId = c.id;
+    closeComposer(); setDirty(); focusComment(c.id, false);
+  }
+  function updateMarkStatus(c) { marksFor(c.id).forEach(m => { m.dataset.hrState = c.status; }); }
+  function setDecision(id, status) {
+    const c = model.comments.find(c => c.id === id);
+    const marks = marksFor(id);
+    if (marks.length !== c.originalParts.length) { toast('Could not locate this passage. Save your review before continuing.', true); return; }
+    if (draft) { toast('Add or cancel your draft before reviewing another change.'); return; }
+    marks.forEach((mark,i) => { mark.textContent = status === 'accepted' ? (i === 0 ? c.replacement : '') : c.originalParts[i]; });
+    c.status = status; updateMarkStatus(c);
+    selected = null; $('add-selection').disabled = true; hideSelection();
+    setDirty(); renderComments();
+  }
+  function focusComment(id, scrollDocument = true) {
+    activeId = id;
+    if ($('comment-filter').value === 'open' && model.comments.find(c => c.id === id)?.status !== 'open') $('comment-filter').value = 'all';
+    renderComments();
+    const card = document.getElementById('card-' + id);
+    if (card) card.scrollIntoView({behavior:'smooth',block:'nearest'});
+    const marks = marksFor(id);
+    if (scrollDocument && marks[0]) marks[0].scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  function editComment(id) {
+    if (draft && hasDraftChanges()) { toast('Add or cancel your current draft first.'); return; }
+    const c = model.comments.find(c => c.id === id);
+    if (c.status === 'accepted') { toast('Undo acceptance before changing the suggestion.'); return; }
+    const marks = marksFor(c.id);
+    const blocks = new Set(marks.filter(m => m.textContent.trim()).map(m => blockFor(m.firstChild || m)));
+    draft = {editId:id, quote:c.quote, canReplace:blocks.size <= 1, initialNote:c.note, initialSuggest:c.replacement !== null, initialReplacement:c.replacement === null ? c.quote : c.replacement};
+    showComposer(c);
+  }
+  function deleteComment(id) {
+    if (draft) { toast('Add or cancel your draft before removing a comment.'); return; }
+    const c = model.comments.find(c => c.id === id);
+    if (!confirm(c.status === 'accepted' ? 'Remove this annotation? Its accepted text will stay in the document.' : 'Remove this comment and its suggestion, if any?')) return;
+    marksFor(id).forEach(mark => { const parent = mark.parentNode; mark.replaceWith(...mark.childNodes); parent.normalize(); });
+    model.comments = model.comments.filter(c => c.id !== id);
+    selected = null; $('add-selection').disabled = true; hideSelection();
+    setDirty(); renderComments();
+  }
+  function el(tag, className, content) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (content !== undefined) node.textContent = content;
+    return node;
+  }
+  function action(label, fn, className = '') { const b = el('button','small ' + className,label); b.type = 'button'; b.addEventListener('click',fn); return b; }
+  function renderComments() {
+    const list = $('comment-list'); list.replaceChildren();
+    const comments = model ? model.comments : [];
+    const open = comments.filter(c => c.status === 'open').length;
+    $('comment-count').textContent = `${comments.length} · ${open} open`;
+    const visible = comments.filter(c => $('comment-filter').value !== 'open' || c.status === 'open');
+    $('sidebar-empty').hidden = !!visible.length || !!draft;
+    if (comments.length && !visible.length) {
+      $('sidebar-empty').replaceChildren(el('strong','', 'No open comments.'),document.createTextNode('Switch to All comments to see your completed review.'));
+    } else if (!comments.length) {
+      $('sidebar-empty').replaceChildren(el('strong','', 'Start with a passage.'),document.createTextNode('Select text in the document, then click Add comment. You can also press Ctrl + Alt + M.'));
+    }
+    comments.forEach(c => marksFor(c.id).forEach(m => { if (c.id === activeId) m.dataset.hrActive = 'true'; else delete m.dataset.hrActive; }));
+    for (const c of visible) {
+      const card = el('article','card' + (c.id === activeId ? ' active' : '')); card.id = 'card-' + c.id;
+      const header = el('div','card-header');
+      header.append(el('span','card-number', `#${comments.indexOf(c)+1} · ${c.replacement === null ? 'Comment' : 'Suggestion'}`),el('span','badge ' + c.status,c.status[0].toUpperCase() + c.status.slice(1)));
+      const quote = el('button','quote',c.quote); quote.type = 'button'; quote.title = 'Jump to this passage'; quote.addEventListener('click',() => focusComment(c.id));
+      card.append(header,quote);
+      if (c.note) card.append(el('p','note-text',c.note));
+      if (c.replacement !== null) card.append(el('div','replacement-label',c.status === 'accepted' ? 'Applied replacement' : 'Proposed replacement'),el('div','replacement' + (c.replacement === '' ? ' deletion' : ''),c.replacement === '' ? 'Delete the selected text' : c.replacement));
+      const actions = el('div','card-actions');
+      if (c.status === 'open' && c.replacement !== null) actions.append(action('Accept',() => setDecision(c.id,'accepted'),'accept'),action('Reject',() => setDecision(c.id,'rejected'),'reject'));
+      else if (c.status === 'open') actions.append(action('Resolve',() => setDecision(c.id,'resolved')));
+      else actions.append(action(c.status === 'accepted' ? 'Undo acceptance' : 'Reopen',() => setDecision(c.id,'open')));
+      const more = el('div','card-tools');
+      if (c.status !== 'accepted') more.append(action('Edit',() => editComment(c.id),'quiet'));
+      more.append(action('Remove',() => deleteComment(c.id),'quiet danger'));
+      actions.append(more); card.append(actions); list.append(card);
+    }
+  }
+  function outputName(prefix) {
+    const base = (model.originalName.split(/[\\/]/).pop() || 'document.html').replace(/[<>:"|?*\u0000-\u001f]/g,'_');
+    return prefix + (/\.html?$/i.test(base) ? base : base + '.html');
+  }
+  function download(text, name) {
+    const url = URL.createObjectURL(new Blob([text],{type:'text/html;charset=utf-8'}));
+    const anchor = document.createElement('a'); anchor.href = url; anchor.download = name; document.body.append(anchor); anchor.click(); anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  }
+  function reviewSnapshot() {
+    const doc = frame.contentDocument.documentElement.cloneNode(true);
+    doc.querySelectorAll('[data-hr-active]').forEach(m => m.removeAttribute('data-hr-active'));
+    return {format:FORMAT,originalName:model.originalName,documentHtml:'<!doctype html>\n' + doc.outerHTML,comments:model.comments};
+  }
+  function saveAnnotated() {
+    if (!model) return;
+    if (draft) { toast('Add or cancel your draft before saving.'); return; }
+    const copy = template.cloneNode(true);
+    copy.querySelector('#review-data').textContent = JSON.stringify(reviewSnapshot()).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
+    copy.querySelector('title').textContent = 'Review · ' + model.originalName;
+    download('<!doctype html>\n' + copy.outerHTML,outputName('annotated-'));
+    dirty = false;
+    $('save-state').textContent = 'Copy downloaded · save again after further edits';
+    $('save-state').classList.remove('unsaved');
+    toast('Downloaded ' + outputName('annotated-'));
+  }
+  function exportClean() {
+    if (!model) return;
+    if (draft) { toast('Add or cancel your draft before exporting.'); return; }
+    const copy = frame.contentDocument.documentElement.cloneNode(true);
+    copy.querySelectorAll('mark[data-hr-id]').forEach(mark => mark.replaceWith(...mark.childNodes));
+    copy.querySelectorAll('style[data-hr-style]').forEach(style => style.remove());
+    copy.querySelectorAll('[data-hr-original-href]').forEach(link => { link.setAttribute('href',link.dataset.hrOriginalHref); delete link.dataset.hrOriginalHref; if (link.dataset.hrAddedTitle) { link.removeAttribute('title'); delete link.dataset.hrAddedTitle; } });
+    download('<!doctype html>\n' + copy.outerHTML,outputName('revised-'));
+    toast('Downloaded revised HTML with accepted edits and no comments.');
+  }
+  function keyboardShortcut(e) {
+    if ((e.ctrlKey || e.metaKey) && e.altKey && e.key.toLowerCase() === 'm') { e.preventDefault(); captureSelection(); startComment(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's' && model) { e.preventDefault(); saveAnnotated(); }
+    if (e.key === 'Escape') hideSelection();
+  }
+  $('open-button').addEventListener('click',() => $('file-input').click());
+  $('choose-button').addEventListener('click',() => $('file-input').click());
+  $('file-input').addEventListener('change', e => { const file = e.target.files[0]; e.target.value = ''; readFile(file); });
+  $('demo-button').addEventListener('click',() => { if (canDiscard()) loadReview({format:FORMAT,originalName:'example-handbook.html',documentHtml:sampleHtml,comments:[]},false); });
+  $('save-button').addEventListener('click',saveAnnotated);
+  $('clean-button').addEventListener('click',exportClean);
+  $('add-selection').addEventListener('click',startComment);
+  $('selection-action').addEventListener('mousedown',e => e.preventDefault());
+  $('selection-action').addEventListener('click',startComment);
+  $('composer').addEventListener('submit',submitComment);
+  $('cancel-comment').addEventListener('click',() => { if (!hasDraftChanges() || confirm('Discard this unfinished comment?')) closeComposer(); });
+  $('suggest-toggle').addEventListener('change',() => { $('replacement-fields').hidden = !$('suggest-toggle').checked; if ($('suggest-toggle').checked) $('replacement-input').focus(); });
+  $('comment-filter').addEventListener('change',renderComments);
+  $('help-button').addEventListener('click',() => $('help-dialog').showModal());
+  $('close-help').addEventListener('click',() => $('help-dialog').close());
+  document.addEventListener('keydown',keyboardShortcut);
+  window.addEventListener('resize',hideSelection);
+  window.addEventListener('beforeunload', e => { if (dirty || hasDraftChanges()) { e.preventDefault(); e.returnValue = ''; } });
+  let dragDepth = 0;
+  document.addEventListener('dragenter',e => { if (Array.from(e.dataTransfer.types).includes('Files')) { e.preventDefault(); dragDepth++; $('drop-overlay').hidden = false; } });
+  document.addEventListener('dragover',e => { if (Array.from(e.dataTransfer.types).includes('Files')) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; } });
+  document.addEventListener('dragleave',() => { if (--dragDepth <= 0) { dragDepth = 0; $('drop-overlay').hidden = true; } });
+  document.addEventListener('drop',e => { e.preventDefault(); dragDepth = 0; $('drop-overlay').hidden = true; const file = e.dataTransfer.files[0]; if (file) readFile(file); });
+  try {
+    const saved = JSON.parse($('review-data').textContent);
+    if (saved) loadReview(validatePayload(saved),true).catch(err => toast('Could not restore the review: ' + err.message,true));
+  } catch (err) { toast('Could not restore the review: ' + err.message,true); }
+})();
+</script>
+</body>
+</html>
