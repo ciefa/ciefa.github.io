@@ -8,9 +8,15 @@
   "scripts": {
     "test": "playwright test --grep-invert @performance",
     "test:chromium": "playwright test --project=chromium --grep-invert @performance",
-    "test:performance": "playwright test tests/performance.spec.cjs --project=chromium"
+    "test:performance": "playwright test tests/performance.spec.cjs tests/roundtrip-performance.spec.cjs --project=chromium",
+    "build:roundtrip": "node scripts/build-roundtrip.mjs",
+    "check:roundtrip-build": "node scripts/build-roundtrip.mjs --check",
+    "test:roundtrip": "playwright test tests/roundtrip-*.spec.cjs --grep-invert @performance"
   },
   "devDependencies": {
-    "@playwright/test": "1.57.0"
+    "@playwright/test": "1.57.0",
+    "entities": "6.0.1",
+    "esbuild": "0.28.2",
+    "parse5": "8.0.0"
   }
 }

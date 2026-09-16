@@ -111,6 +111,7 @@ async function comment(
   await page.locator('#submit-comment').click();
 }
 async function download(page, selector) {
+  if (selector === '#clean-button' && await page.locator('#export-menu').count() && await page.locator('#export-menu').isHidden()) await page.locator('#export-menu-button').click();
   const pending = page.waitForEvent('download');
   await page.locator(selector).click();
   const file = await pending;

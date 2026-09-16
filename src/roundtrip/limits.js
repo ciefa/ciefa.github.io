@@ -1,0 +1,17 @@
+export const RT_MAX_INPUT_BYTES = 64 * 1024 * 1024;
+export const RT_MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024;
+export const RT_MAX_TEMPLATE_BYTES = 2 * 1024 * 1024;
+export const RT_MAX_NORMALIZED_BYTES = 48 * 1024 * 1024;
+export const RT_MAX_UNITS = 16384;
+export const RT_MAX_RUNS = 65536;
+export const RT_MAX_COMMENTS = 2000;
+export const RT_MAX_PARTS = 2048;
+export const RT_MAX_NOTE_BYTES = 64 * 1024;
+export const RT_MAX_REPLACEMENT_BYTES = 64 * 1024;
+export const RT_MAX_CURRENT_TEXT_BYTES = 2 * 1024 * 1024;
+export const RT_MAX_METADATA_BYTES = 8 * 1024 * 1024;
+export const RT_MAX_PARSE_NODES = 100000;
+export const RT_MAX_TREE_DEPTH = 128;
+export const RT_MAX_ELEMENT_ATTRIBUTES = 64;
+export const RT_MAX_ALL_ATTRIBUTES = 100000;
+export const RT_EXPORT_TIMEOUT_MS = 30000;

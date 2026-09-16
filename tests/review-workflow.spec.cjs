@@ -27,7 +27,7 @@ test('A01 mouse selection, plain comment, resolve, reopen, edit, remove', async 
 }) => {
   const box = await page.locator('#document-frame').evaluate((frame) => {
     const d = frame.contentDocument,
-      n = d.querySelector('#p0').firstChild,
+      n = d.createTreeWalker(d.querySelector('#p0'), NodeFilter.SHOW_TEXT).nextNode(),
       r = d.createRange();
     r.setStart(n, 0);
     r.setEnd(n, 5);
