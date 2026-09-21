@@ -71,17 +71,24 @@ function contextFor(m, context) {
 }
 export function measure(m, context) {
   contextFor(m, context);
+  const markdown = m.format === "local-markdown-document-v1";
   let runCount = 0,
     currentTextBytes = 0,
-    patchedTemplateBytes = bytes(m.source.template);
+    patchedTemplateBytes = bytes(markdown ? m.source.text : m.source.template);
   m.units.forEach((u, i) => {
     runCount += u.runs.length;
     const text = currentText(u);
     currentTextBytes += bytes(text);
     if (text !== u.original)
       patchedTemplateBytes +=
-        bytes(encodeTextPatch(text, context.sourceUnits[i].preAtStart)) -
-        bytes(m.source.template.slice(u.start, u.end));
+        bytes(
+          markdown
+            ? text
+            : encodeTextPatch(text, context.sourceUnits[i].preAtStart),
+        ) -
+        bytes(
+          (markdown ? m.source.text : m.source.template).slice(u.start, u.end),
+        );
   });
   const { baseHtml, ...metadata } = m;
   return {
@@ -105,31 +112,42 @@ function limits(m, context) {
 export function validate(payload, context) {
   const m = payload;
   keys(m, "format originalName source baseHtml units comments view");
-  check(m.format === "local-html-reviewer-v2", "RT_VERSION");
+  const markdown = m.format === "local-markdown-document-v1";
+  check(m.format === "local-html-reviewer-v2" || markdown, "RT_VERSION");
   check(typeof m.originalName === "string" && typeof m.baseHtml === "string");
   bounded(bytes(m.baseHtml), L.RT_MAX_NORMALIZED_BYTES);
   keys(
     m.source,
-    "profile mappingVersion sha256 byteLength encoding bomBytes templateSha256 template",
+    markdown
+      ? "profile mappingVersion sha256 byteLength encoding bomBytes text"
+      : "profile mappingVersion sha256 byteLength encoding bomBytes templateSha256 template",
   );
   const s = m.source;
   check(
-    s.profile === "bundler-template-text-v1" && s.mappingVersion === 1,
+    s.profile ===
+      (markdown ? "markdown-source-v1" : "bundler-template-text-v1") &&
+      s.mappingVersion === 1,
     "RT_VERSION",
   );
   check(
     s.encoding === "utf-8" &&
       [0, 3].includes(s.bomBytes) &&
       integer(s.byteLength) &&
-      s.byteLength > 0 &&
+      (markdown ? s.byteLength >= 0 : s.byteLength > 0) &&
       typeof s.sha256 === "string" &&
       /^[a-f0-9]{64}$/.test(s.sha256) &&
-      typeof s.templateSha256 === "string" &&
-      /^[a-f0-9]{64}$/.test(s.templateSha256) &&
-      scalar(s.template),
+      (markdown
+        ? scalar(s.text) && bytes(s.text) + s.bomBytes === s.byteLength
+        : typeof s.templateSha256 === "string" &&
+          /^[a-f0-9]{64}$/.test(s.templateSha256) &&
+          scalar(s.template)),
   );
   bounded(s.byteLength, L.RT_MAX_INPUT_BYTES);
-  bounded(bytes(s.template), L.RT_MAX_TEMPLATE_BYTES);
+  const originalSource = markdown ? s.text : s.template;
+  bounded(
+    bytes(originalSource),
+    markdown ? 1024 * 1024 : L.RT_MAX_TEMPLATE_BYTES,
+  );
   keys(m.view, "previewOpen scrollTogether");
   check(
     typeof m.view.previewOpen === "boolean" &&
@@ -138,6 +156,14 @@ export function validate(payload, context) {
   array(m.units);
   array(m.comments);
   check(m.units.length > 0);
+  if (markdown)
+    check(
+      m.units.length === 1 &&
+        m.units[0].id === "u000001" &&
+        m.units[0].start === 0 &&
+        m.units[0].end === s.text.length &&
+        m.units[0].original === s.text,
+    );
   bounded(m.units.length, L.RT_MAX_UNITS);
   bounded(m.comments.length, L.RT_MAX_COMMENTS);
   let end = 0,
@@ -150,8 +176,8 @@ export function validate(payload, context) {
         integer(u.start) &&
         integer(u.end) &&
         u.start >= end &&
-        u.end > u.start &&
-        u.end <= s.template.length &&
+        (markdown ? u.end >= u.start : u.end > u.start) &&
+        u.end <= originalSource.length &&
         scalar(u.original),
     );
     end = u.end;

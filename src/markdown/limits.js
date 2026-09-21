@@ -1,0 +1,11 @@
+export const MD_MAX_INPUT_BYTES = 16 * 1024 * 1024;
+export const MD_MAX_DOCUMENTS = 100;
+export const MD_MAX_ZIP_ENTRIES = 200;
+export const MD_MAX_SOURCE_BYTES = 1024 * 1024;
+export const MD_MAX_TOTAL_SOURCE_BYTES = 8 * 1024 * 1024;
+export const MD_MAX_CURRENT_BYTES = 2 * 1024 * 1024;
+export const MD_MAX_TOTAL_CURRENT_BYTES = 16 * 1024 * 1024;
+export const MD_MAX_PAYLOAD_BYTES = 32 * 1024 * 1024;
+export const MD_MAX_PREVIEW_BYTES = 8 * 1024 * 1024;
+export const MD_OPERATION_TIMEOUT_MS = 30000;
+export const MD_PREVIEW_TIMEOUT_MS = 10000;
