@@ -37,6 +37,12 @@ mkdir -p playwright-report
 npm run test:performance -- --reporter=json > playwright-report/performance.json
 ```
 
+## GitHub Pages deployment
+
+GitHub Pages publishes the committed files from the root of `main`. Keep the empty root `.nojekyll` file: the application is already built, and documentation contains literal template syntax that Jekyll would otherwise interpret. [GitHub documents this static publishing configuration](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site). Markdown documentation remains available as source files on the site and can be read with formatting on GitHub.
+
+Before pushing application changes, run `npm run build` and `npm run check:build` and include the updated `index.html`. After pushing, verify that the `pages-build-deployment` run for the pushed commit completes successfully, including deployment. Confirm that the published `https://ciefa.github.io/` serves the same `index.html` bytes as that commit; local application tests alone do not verify deployment.
+
 ## Coverage and browser limitation
 
 The test titles retain the I01–I11, V01–V07, A01–A10, S01–S06, L01–L06, X01–X04, and P01–P04 IDs from [the implementation specification](bundle-import-implementation.md). Additional cases cover corrupt review state, mixed compression, escaped font declarations, pixel limits, UTF-16BE/newlines, exact download boundaries, and cancellation while decoding or awaiting a frame.
