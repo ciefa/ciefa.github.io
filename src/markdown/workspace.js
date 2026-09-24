@@ -1,5 +1,6 @@
 import * as L from "./limits.js";
 import { validate as validateModel, currentText } from "../roundtrip/model.js";
+export { INDENT, indentLines } from "./editing.js";
 export const FORMAT = "local-markdown-workspace-v1";
 export const DOCUMENT_FORMAT = "local-markdown-document-v1";
 export const bytes = (s) => new TextEncoder().encode(s);

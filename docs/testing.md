@@ -107,6 +107,26 @@ After final UI/lifecycle refinements, `npm run test:markdown -- --output=/tmp/ht
 
 `npm run build`, `npm run check:build`, and `git diff --check` passed. Both artifact generators and their bundled notices are reproducible. Dependency installation audited 37 packages with zero reported vulnerabilities at validation time. These measurements describe the reference machine, not a performance guarantee for other devices.
 
+## Markdown indentation coverage
+
+The [Markdown indentation specification](markdown-indentation-implementation.md) makes restructuring source, such as nesting list items, practical in the replacement field. `tests/markdown-indentation.spec.cjs` covers MI01–MI04: the pure `indentLines` line and selection rules (all engines); Tab/Shift+Tab indentation, native undo, the Esc-then-Tab focus release, and preview/export of a nested list; the monospace, auto-growing Markdown replacement field; and unchanged Tab, font, and hint behavior in HTML reviews. The interactive cases skip WebKit for the documented sandbox limitation.
+
+## Markdown indentation validation record
+
+Validated 2026-09-23 on Node.js 26.10.0, Intel Core Ultra 5 235U, 31 GiB RAM, Arch Linux 7.2.4, using the pinned Playwright browser builds listed above.
+
+Environment deviations: Playwright's installer downloaded each pinned browser archive but stalled while extracting it on this host, so the same archives were unpacked into `PLAYWRIGHT_BROWSERS_PATH` with Playwright's completion marker. WebKit's Ubuntu 24.04 libraries (libicu74, libxml2 2.9.14, libvpx9, libflite1) were supplied outside the repository by extracting the Ubuntu noble packages into the WebKit bundle's `sys/lib` fallback folder.
+
+| Command | Chromium | Firefox | WebKit |
+| --- | --- | --- | --- |
+| `npx playwright test tests/markdown-indentation.spec.cjs` | 4 passed | 4 passed | 1 passed, 3 skipped |
+| `npm run test:markdown` | 50 passed | 48 passed, 1 skipped, 1 failed | 41 passed, 9 skipped |
+| `npm test` (run as `--project=chromium --project=firefox`, then `--project=webkit`) | 221 passed | 214 passed, 6 skipped, 1 failed | 158 passed, 62 skipped, 1 expected failure (K01) |
+
+Playwright's summaries were 139 passed / 10 skipped / 1 failed for `test:markdown`, 435 passed / 6 skipped / 1 failed for Chromium and Firefox, and 159 passed (including K01) / 62 skipped for WebKit. `npm run build`, `npm run check:build`, and `git diff --check` passed. Regeneration changed only the Markdown core bundle functionally; the worker bundle differs by one renamed minified identifier, and `LICENSES/markdown-dependencies.txt` is unchanged.
+
+Both Firefox failures are `MD17 preview timeout and worker failure preserve editable source`, which is intermittent on this machine independent of this change. Running `tests/markdown-lifecycle.spec.cjs` alone in Firefox failed it in 2 of 3 runs with this change and 1 of 3 runs on an unmodified export of baseline `e84875c`; run by itself it passed 8 of 8 repeats. Its instrumentation shortens every 10,000 ms and 30,000 ms timer to 80 ms, which also shortens the 30-second `IMPORT_TIMEOUT_MS`. An inspected failure snapshot shows the import abandoned with no document open, consistent with Firefox exceeding that 80 ms import deadline. The test was left unchanged.
+
 ## Original-format export coverage
 
 The RT01–RT35 cases in [the original-format export specification](bundle-roundtrip-implementation.md) are covered by `tests/roundtrip-*.spec.cjs`. They exercise the shipped model and worker, real converter projections, public export controls, byte comparisons, and an independently authored executable bundle. Tests cover accepted-only exports, retained edits after annotation removal, repeated/duplicate text, empty ownership boundaries, inline formatting, moved slots, entities and Unicode, CR/preformatted newlines, source reattachment, tampered projections, v1 compatibility, cross-engine offline reopening, isolation, cancellation, and fixed limits.
